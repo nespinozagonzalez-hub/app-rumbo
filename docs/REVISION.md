@@ -17,9 +17,9 @@ Fecha: 19 de octubre de 2026.
 
 ## Uso con estudiantes
 
-App: https://nespinozagonzalez-hub.github.io/test-tipo-jugadorV2/
+App: https://nespinozagonzalez-hub.github.io/app-rumbo/
 
-Usar datos ficticios. Las notas no se envían automáticamente: cada estudiante debe descargarlas y compartirlas por el medio acordado. No se requiere registro.
+Usar datos ficticios. Cada estudiante debe pulsar Enviar al profesor y esperar Recibida por el profesor. Ante un fallo, puede reintentar o descargar un respaldo. No se requiere registro.
 
 ## Límites de la revisión
 
@@ -32,3 +32,11 @@ Se agregó un recorrido interactivo de nueve pasos, invitación en la primera vi
 Pruebas con DOM correctas: inicio único, nueve pasos, visibilidad de cada objetivo, resaltado y práctica, retroceso, atajos por sección, cierre con Escape, repetición y conservación de datos financieros. Se volvió a comprobar el flujo de anotaciones y exportación tras integrar el tutorial.
 
 También se habilitaron los botones de ayuda y respaldo en la navegación móvil. La revisión en un iPhone físico sigue pendiente.
+
+## Recepción de mejoras 1.3
+
+Se integró la URL proporcionada por el docente. La app guarda el comentario antes de enviarlo, confirma solo al recibir un mensaje válido de Apps Script y permite reintentar las notas pendientes. Se preservan y migran las notas anteriores. Los envíos no incluyen movimientos financieros ni metas.
+
+Pasaron las pruebas de confirmación, origen e ID, bloqueo de doble clic, reintento con ID estable, rechazo del servidor, migración, envío secuencial, modo sin conexión, vencimiento de espera, almacenamiento bloqueado y escape de texto. Se volvieron a comprobar el tutorial, las funciones de aula y las nueve pruebas matemáticas.
+
+La primera comprobación del endpoint sin sesión redirigió al acceso de Google. La implementación debe permitir Cualquier persona; la entrega real queda pendiente de confirmar en el enlace público con ese permiso.

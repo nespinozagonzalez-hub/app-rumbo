@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="rumbo-version" content="1.2-tutorial-20261019">
+  <meta name="rumbo-version" content="1.3-feedback-20261019">
   <meta name="theme-color" content="#6652d5">
   <meta name="description" content="Rumbo: aprende a organizar tu dinero, entender el ahorro y descubrir las matemáticas detrás de las apuestas.">
   <title>Rumbo · Tu dinero, tus decisiones</title>
@@ -17,6 +17,7 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 .classroom-banner{display:flex;align-items:center;justify-content:space-between;gap:20px;background:#eaf3de;border:1px solid #d5e5bf;border-radius:16px;padding:18px 22px;margin:0 0 28px}.classroom-banner p{font-size:12px;margin:5px 0 0}.classroom-banner details{margin-top:9px}.classroom-banner ol{font-size:12px;margin:12px 0 0;padding-left:20px;display:grid;gap:7px}.classroom-banner>.button{flex-shrink:0}textarea{font:inherit;width:100%;min-width:0;resize:vertical;padding:10px 12px;border:1px solid #dedbe8;border-radius:9px;color:var(--ink);margin-bottom:12px}textarea:focus-visible{outline:3px solid var(--purple);outline-offset:3px}#feedback-form .two{margin:0 0 16px}#feedback-list article{border:1px solid var(--line);border-radius:10px;padding:13px;margin:14px 0}#feedback-list article p{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;margin:8px 0}#feedback-list article strong{font-size:12px}#download-feedback{margin-bottom:15px}@media(max-width:640px){.classroom-banner{flex-direction:column;align-items:stretch;padding:17px}.classroom-banner .button{align-self:flex-start}}
 .banner-actions{display:grid;gap:9px;flex-shrink:0}.side-bottom>button{display:block;margin-bottom:12px}.section-help{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 17px;margin:0 0 21px}.section-help summary{font-size:13px}.section-help p{font-size:13px;color:var(--muted);margin:14px 0 12px}.section-help .text-button{font-size:12px}.tutorial-tip{border-left:4px solid var(--purple);background:var(--lavender);padding:14px 16px;border-radius:8px;font-size:13px;margin:18px 0}.tutorial-buttons{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 15px}.tutorial-buttons>.button{flex:1}.button:disabled{opacity:.45;cursor:default}#tutorial-dialog h2{font-size:27px;letter-spacing:-.9px;margin-top:22px}#tutorial-dialog progress{margin-top:14px}#tutorial-skip{font-size:12px}.tutorial-dock{position:fixed;left:284px;right:24px;bottom:max(15px,env(safe-area-inset-bottom));background:var(--ink);color:white;display:flex;justify-content:space-between;align-items:center;gap:15px;padding:16px 20px;border-radius:16px;z-index:20;box-shadow:0 10px 35px #27243744}.tutorial-dock strong{display:block;margin-top:5px;font-size:14px}.tutorial-dock .eyebrow{color:var(--lime);font-size:9px}.tutorial-dock-actions{display:flex;gap:9px;align-items:center;flex-shrink:0}.tutorial-dock .icon-button{color:white;border-color:#777184}.tutorial-highlight{outline:4px solid var(--purple)!important;outline-offset:7px;scroll-margin-top:35px;scroll-margin-bottom:180px;border-radius:10px}body.tutorial-active main{padding-bottom:165px}@media(max-width:1200px){.tutorial-dock{left:246px}}@media(max-width:920px){.tutorial-dock{left:18px;right:18px}.side-bottom{display:flex;gap:18px;align-items:center;margin-top:12px;padding:0}.side-bottom>span{display:none}.side-bottom>button{margin:0;font-size:10px}}@media(max-width:640px){.banner-actions{align-self:stretch}.banner-actions .button{width:100%}.tutorial-dock{align-items:flex-start;flex-direction:column;gap:10px;padding:14px 16px}.tutorial-dock-actions{width:100%}.tutorial-dock-actions>.button{flex:1;font-size:11px;padding:9px}.tutorial-dock strong{font-size:13px}.tutorial-buttons{display:grid;grid-template-columns:1fr 1fr}.tutorial-buttons #tutorial-next{grid-column:1/-1}.tutorial-highlight{outline-offset:4px}#tutorial-dialog{padding:22px}#tutorial-dialog h2{font-size:23px}.section-help summary{font-size:12px}}
+.feedback-note-heading{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}.feedback-badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}.feedback-badge.received{background:#dff3e8;color:#1a5639}.feedback-badge.pending{background:#fff0d7;color:#754c08}.feedback-note-actions{display:flex;flex-wrap:wrap;gap:16px}#feedback-course{margin-bottom:16px}#feedback-status{min-height:1.6em}#feedback-list article{overflow-wrap:anywhere}
 
 </style>
   
@@ -38,7 +39,7 @@
 <main id="main" tabindex="-1">
   <header class="topbar"><span id="breadcrumb">APRENDE HACIENDO / MI DINERO</span><span class="local-pill"><i></i> Guardado en este navegador</span></header>
 
-  <aside id="classroom-intro" class="classroom-banner" aria-label="Prueba en aula"><div><span class="eyebrow">VERSIÓN DE AULA · AYÚDANOS A MEJORAR</span><p>Explora con datos ficticios y anota lo que mejorarías.</p><details><summary>Tu recorrido de prueba (15–20 min)</summary><ol><li>Mi dinero: agrega un gasto y cambia tu meta.</li><li>Mi futuro: compara dos productos y calcula un escenario con tasa cero.</li><li>Sin trampas: compara la ruleta con la moneda justa. ¿Qué cambia?</li><li>Anota una mejora concreta y descarga tus notas para entregarlas al docente.</li></ol></details></div><div class="banner-actions"><button class="button" data-start-tutorial="0">Aprender a usar Rumbo ↗</button><button class="button secondary" id="open-feedback">Anotar una mejora ↗</button></div></aside>
+  <aside id="classroom-intro" class="classroom-banner" aria-label="Prueba en aula"><div><span class="eyebrow">VERSIÓN DE AULA · AYÚDANOS A MEJORAR</span><p>Explora con datos ficticios y anota lo que mejorarías.</p><details><summary>Tu recorrido de prueba (15–20 min)</summary><ol><li>Mi dinero: agrega un gasto y cambia tu meta.</li><li>Mi futuro: compara dos productos y calcula un escenario con tasa cero.</li><li>Sin trampas: compara la ruleta con la moneda justa. ¿Qué cambia?</li><li>Anota una mejora concreta, pulsa Enviar al profesor y espera la confirmación de recepción.</li></ol></details></div><div class="banner-actions"><button class="button" data-start-tutorial="0">Aprender a usar Rumbo ↗</button><button class="button secondary" id="open-feedback">Anotar una mejora ↗</button></div></aside>
   <section class="page" id="page-dinero" aria-labelledby="title-dinero">
     <div class="page-heading"><div><span class="eyebrow">01 / TOMA EL CONTROL</span><h1 id="title-dinero">Tu dinero.<br><span>Tu próximo paso.</span></h1><p>No necesitas tener mucho. Necesitas saber dónde va.</p></div><div class="heading-sticker">HAZ ESPACIO<br>PARA TU<br><strong>PRÓXIMA META ↗</strong></div></div>
     <details class="section-help"><summary>¿Cómo se usa Mi dinero?</summary><p>1. Elige el mes que quieres revisar. 2. Registra un ingreso o gasto con su monto, categoría, descripción y fecha. 3. Mira cómo cambia el balance. 4. Ajusta el reparto y guarda una meta con el dinero que ya reservaste.</p><button class="text-button" data-start-tutorial="1">Muéstrame paso a paso ↗</button></details>
@@ -71,9 +72,9 @@
   </section>
   <footer><span>Rumbo · Aprende a decidir con información.</span><button class="text-button" id="open-sources">Fuentes y modelo educativo ↗</button></footer>
 </main>
-<dialog id="data-dialog"><div class="dialog-heading"><h2>Tu espacio, tus datos</h2><button class="icon-button" data-close="data-dialog" aria-label="Cerrar">×</button></div><p>No necesitas registrarte. Tus movimientos, meta y misiones se guardan en este navegador. No llegan a GitHub ni a GamiAula.</p><p>En un dispositivo compartido, usa ejemplos ficticios. Puedes descargar un respaldo y restaurarlo en otro navegador.</p><div class="dialog-actions"><button class="button" id="export-data">Descargar respaldo JSON</button><label class="button secondary" for="import-data">Restaurar respaldo</label><input id="import-data" type="file" accept=".json,application/json" class="sr-only"><button class="button secondary" id="load-demo">Cargar ejemplo (reemplaza datos)</button><button class="button danger" id="clear-data">Borrar mis datos de este navegador</button></div><p id="data-feedback" aria-live="polite"></p><p class="muted">Si borras los datos del navegador o usas modo privado, el guardado puede desaparecer. La app funciona sin conexiones externas; solo los enlaces a fuentes abren otros sitios.</p></dialog>
+<dialog id="data-dialog"><div class="dialog-heading"><h2>Tu espacio, tus datos</h2><button class="icon-button" data-close="data-dialog" aria-label="Cerrar">×</button></div><p>No necesitas registrarte. Tus movimientos, meta y misiones se guardan en este navegador. No llegan a GitHub ni a GamiAula.</p><p>En un dispositivo compartido, usa ejemplos ficticios. Puedes descargar un respaldo y restaurarlo en otro navegador.</p><div class="dialog-actions"><button class="button" id="export-data">Descargar respaldo JSON</button><label class="button secondary" for="import-data">Restaurar respaldo</label><input id="import-data" type="file" accept=".json,application/json" class="sr-only"><button class="button secondary" id="load-demo">Cargar ejemplo (reemplaza datos)</button><button class="button danger" id="clear-data">Borrar mis datos de este navegador</button></div><p id="data-feedback" aria-live="polite"></p><p class="muted">Si borras los datos del navegador o usas modo privado, el guardado puede desaparecer. Los simuladores y el guardado local funcionan sin conexión. Enviar mejoras al profesor requiere internet y solo transmite el comentario y el curso opcional. Borrar datos aquí no elimina comentarios que el profesor ya recibió.</p></dialog>
 <dialog id="sources-dialog"><div class="dialog-heading"><h2>Aprender con respaldo</h2><button class="icon-button" data-close="sources-dialog" aria-label="Cerrar">×</button></div><p>Contenido educativo para adolescentes, con montos de ejemplo en CLP. Tasas hipotéticas, sin recomendaciones de compra ni contratación.</p><ul class="sources"><li><a href="https://www.cmfchile.cl/educa/621/w3-article-27432.html" target="_blank" rel="noopener noreferrer">CMF Educa: instrumentos de ahorro ↗</a></li><li><a href="https://www.cmfchile.cl/educa/621/w3-propertyvalue-988.html" target="_blank" rel="noopener noreferrer">CMF Educa: fondos mutuos y riesgos ↗</a></li><li><a href="https://www.cmfchile.cl/educa/621/w3-article-518.html" target="_blank" rel="noopener noreferrer">CMF Educa: instrumentos del mercado de valores ↗</a></li><li><a href="https://www.gamblingcommission.gov.uk/public-and-players/guide/return-to-player-how-much-gaming-machines-payout" target="_blank" rel="noopener noreferrer">Gambling Commission: retorno promedio e independencia ↗</a></li></ul><p class="muted">Fuentes revisadas el 13 de octubre de 2026. El modelo de ruleta y la moneda con pago reducido son ejemplos matemáticos simplificados. Los términos reales dependen de cada producto.</p></dialog>
-<dialog id="feedback-dialog" aria-labelledby="feedback-title"><div class="dialog-heading"><h2 id="feedback-title">Tus ideas mejoran Rumbo</h2><button class="icon-button" data-close="feedback-dialog" aria-label="Cerrar notas">×</button></div><p>Usa ejemplos ficticios. No incluyas tu nombre, datos de tu familia ni información financiera real. Las notas quedan en este navegador: descárgalas y compártelas con tu docente.</p><form id="feedback-form"><div class="two"><div><label for="feedback-section">Sección</label><select id="feedback-section"><option value="dinero">Mi dinero</option><option value="futuro">Mi futuro</option><option value="riesgos">Sin trampas</option><option value="general">Toda la app</option></select></div><div><label for="feedback-kind">¿Qué encontraste?</label><select id="feedback-kind"><option>Idea de mejora</option><option>Algo no funciona</option><option>Algo no se entiende</option><option>Algo que me gustó</option></select></div></div><label for="feedback-task">¿Qué intentabas hacer?</label><textarea id="feedback-task" rows="2" maxlength="500" required placeholder="Ej. comparar dos escenarios de ahorro"></textarea><label for="feedback-result">¿Qué ocurrió o qué mejorarías?</label><textarea id="feedback-result" rows="3" maxlength="700" required></textarea><label for="feedback-expect">¿Qué esperabas o qué propones? (opcional)</label><textarea id="feedback-expect" rows="2" maxlength="700"></textarea><button class="button" type="submit">Guardar nota</button></form><p id="feedback-status" role="status"></p><div id="feedback-list"></div><button class="button secondary" id="download-feedback">Descargar mis notas (.txt)</button><p class="muted">Descargar prepara un archivo; no lo envía automáticamente al docente. Estas notas se guardan y descargan por separado del respaldo de tus movimientos.</p></dialog>
+<dialog id="feedback-dialog" aria-labelledby="feedback-title"><div class="dialog-heading"><h2 id="feedback-title">Tus ideas mejoran Rumbo</h2><button class="icon-button" data-close="feedback-dialog" aria-label="Cerrar notas">×</button></div><p>Usa ejemplos ficticios. No incluyas tu nombre, datos de tu familia ni información financiera real. Al pulsar Enviar al profesor, tu comentario llegará a su planilla. Se conserva una copia en este navegador. Tus movimientos y metas no se envían.</p><form id="feedback-form"><label for="feedback-course">Curso (opcional, sin tu nombre)</label><input id="feedback-course" maxlength="80" placeholder="Ej. 2° medio A" autocomplete="off"><div class="two"><div><label for="feedback-section">Sección</label><select id="feedback-section"><option value="dinero">Mi dinero</option><option value="futuro">Mi futuro</option><option value="riesgos">Sin trampas</option><option value="general">Toda la app</option></select></div><div><label for="feedback-kind">¿Qué encontraste?</label><select id="feedback-kind"><option>Idea de mejora</option><option>Algo no funciona</option><option>Algo no se entiende</option><option>Algo que me gustó</option></select></div></div><label for="feedback-task">¿Qué intentabas hacer?</label><textarea id="feedback-task" rows="2" maxlength="500" required placeholder="Ej. comparar dos escenarios de ahorro"></textarea><label for="feedback-result">¿Qué ocurrió o qué mejorarías?</label><textarea id="feedback-result" rows="3" maxlength="700" required></textarea><label for="feedback-expect">¿Qué esperabas o qué propones? (opcional)</label><textarea id="feedback-expect" rows="2" maxlength="700"></textarea><button class="button" id="feedback-submit" type="submit">Enviar al profesor</button></form><p id="feedback-status" role="status"></p><div id="feedback-list"></div><div class="dialog-actions"><button class="button" id="send-pending-feedback" type="button" disabled>Enviar notas pendientes</button><button class="button secondary" id="download-feedback" type="button">Descargar respaldo de notas (.txt)</button></div><p class="muted">Una nota está entregada cuando muestra Recibida por el profesor. Si queda pendiente, puedes reintentar. Descargar crea una copia para ti. Quitar una nota de este navegador no la elimina de la planilla del profesor.</p></dialog>
 <dialog id="tutorial-dialog" aria-labelledby="tutorial-title" aria-describedby="tutorial-copy"><div class="dialog-heading"><span class="eyebrow" id="tutorial-step-label">PASO 1 DE 9</span><button class="icon-button" id="tutorial-close" aria-label="Cerrar tutorial">×</button></div><progress id="tutorial-progress" max="9" value="1">1 de 9</progress><h2 id="tutorial-title">Aprende a usar Rumbo</h2><p id="tutorial-copy"></p><div class="tutorial-tip" id="tutorial-tip"></div><p class="muted">Puedes mirar la explicación y luego usar «Ver en la app» para practicar. El recorrido no cambia tus datos por sí solo.</p><div class="tutorial-buttons"><button class="button secondary" id="tutorial-prev">Anterior</button><button class="button secondary" id="tutorial-view">Ver en la app ↗</button><button class="button" id="tutorial-next">Siguiente →</button></div><button class="text-button" id="tutorial-skip">Explorar por mi cuenta</button></dialog>
 <aside id="tutorial-dock" class="tutorial-dock" aria-label="Controles del tutorial" hidden><div><span class="eyebrow" id="tutorial-dock-count"></span><strong id="tutorial-dock-title"></strong></div><div class="tutorial-dock-actions"><button class="button secondary" id="tutorial-dock-explain">Ver explicación</button><button class="button" id="tutorial-dock-next">Siguiente →</button><button class="icon-button" id="tutorial-dock-exit" aria-label="Salir del recorrido">×</button></div></aside>
 <div id="toast" role="status" aria-live="polite"></div>
@@ -307,46 +308,136 @@
   $('export-data').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='rumbo-respaldo-'+today+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('data-feedback').textContent='Respaldo preparado. Consérvalo en un lugar privado.';});
   $('import-data').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>2e6)throw Error();const restored=F.validateBackup(JSON.parse(await file.text()));if(confirm('¿Reemplazar los datos de este navegador por el respaldo?')){replace(restored,'Respaldo restaurado.');const last=state.entries.map(x=>x.date).sort().at(-1);$('period').value=last?last.slice(0,7):month;renderBudget();$('data-feedback').textContent='Respaldo restaurado correctamente.';}}catch{$('data-feedback').textContent='El archivo no es un respaldo válido de Rumbo. Tus datos actuales se conservaron.';}finally{e.target.value='';}});
   const FEEDBACK_KEY = 'rumbo.feedback.v1';
+  const FEEDBACK_URL = 'https://script.google.com/macros/s/AKfycbzrpXnMjv36F1ESNvPO2W-GFxpCN7n3JaJ4R36auw8YTmhlFsSqaw80aNMdY8dboyQ/exec';
+  function feedbackID() {
+    return window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : 'rumbo-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,14);
+  }
   let feedbackNotes = [];
+  let feedbackBusy = false, sendingFeedbackID = '';
   try {
     const notes = JSON.parse(localStorage.getItem(FEEDBACK_KEY) || '[]');
-    if (Array.isArray(notes)) feedbackNotes = notes.slice(0,200).filter(n => n && ['section','kind','task','result','expect','date'].every(k => typeof n[k] === 'string' && n[k].length <= 700)).map(n => ({section:n.section,kind:n.kind,task:n.task,result:n.result,expect:n.expect,date:n.date}));
+    if (Array.isArray(notes)) feedbackNotes = notes.slice(0,200).filter(n => n && ['section','kind','task','result','expect','date'].every(k => typeof n[k] === 'string' && n[k].length <= 700)).map(n => ({
+      id:typeof n.id === 'string' && /^[A-Za-z0-9_-]{8,100}$/.test(n.id) ? n.id : feedbackID(),
+      section:n.section,kind:n.kind,task:n.task,result:n.result,expect:n.expect,date:n.date,
+      course:typeof n.course === 'string' ? n.course.slice(0,80) : '',
+      sentAt:typeof n.sentAt === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(n.sentAt) && n.sentAt.length < 40 ? n.sentAt : ''
+    }));
   } catch { /* Las notas no bloquean la app si el navegador impide guardarlas. */ }
+  // Persiste los ID de las notas antiguas para que sus reintentos no se dupliquen.
+  if (feedbackNotes.length) saveNotes();
   function saveNotes() {
     try { localStorage.setItem(FEEDBACK_KEY, JSON.stringify(feedbackNotes)); return true; }
     catch { return false; }
   }
+  function feedbackSummary() {
+    const sent = feedbackNotes.filter(n => n.sentAt).length, pending = feedbackNotes.length - sent;
+    return feedbackNotes.length ? `${sent} recibida(s) por el profesor · ${pending} pendiente(s) de envío.` : 'Escribe tu comentario y pulsa Enviar al profesor.';
+  }
   function renderNotes() {
-    $('feedback-list').innerHTML = feedbackNotes.map((n,i) => `<article><strong>${i+1}. ${escape(n.kind)} · ${escape(n.section)}</strong><p><b>Intentaba:</b> ${escape(n.task)}</p><p><b>Observé:</b> ${escape(n.result)}</p>${n.expect?`<p><b>Propongo:</b> ${escape(n.expect)}</p>`:''}<button class="text-button" data-remove-note="${i}">Eliminar esta nota</button></article>`).join('');
+    $('feedback-list').innerHTML = feedbackNotes.map((n,i) => `<article><div class="feedback-note-heading"><strong>${i+1}. ${escape(n.kind)} · ${escape(n.section)}</strong><span class="feedback-badge ${n.sentAt?'received':'pending'}">${n.sentAt?'Recibida por el profesor':sendingFeedbackID===n.id?'Enviando…':'Pendiente de envío'}</span></div>${n.course?`<p><b>Curso:</b> ${escape(n.course)}</p>`:''}<p><b>Intentaba:</b> ${escape(n.task)}</p><p><b>Observé:</b> ${escape(n.result)}</p>${n.expect?`<p><b>Propongo:</b> ${escape(n.expect)}</p>`:''}<div class="feedback-note-actions">${!n.sentAt?`<button class="text-button" data-send-note="${i}" ${feedbackBusy?'disabled':''}>${sendingFeedbackID===n.id?'Enviando…':'Enviar al profesor'}</button>`:''}<button class="text-button" data-remove-note="${i}" ${feedbackBusy?'disabled':''}>Quitar de este navegador</button></div></article>`).join('');
     $('download-feedback').disabled = feedbackNotes.length === 0;
-    $('feedback-status').textContent = feedbackNotes.length ? `${feedbackNotes.length} nota(s) listas para descargar. No se envían automáticamente.` : 'Todavía no has guardado notas.';
+    $('send-pending-feedback').disabled = feedbackBusy || !feedbackNotes.some(n => !n.sentAt);
+    $('feedback-submit').disabled = feedbackBusy;
+    $('feedback-submit').textContent = feedbackBusy ? 'Enviando…' : 'Enviar al profesor';
+    $('feedback-status').textContent = feedbackBusy ? 'Enviando tu mejora. Esperamos la confirmación de recepción…' : feedbackSummary();
+  }
+  function isFeedbackOrigin(origin) {
+    try {
+      const u = new URL(origin);
+      return u.protocol === 'https:' && (u.hostname === 'script.google.com' || u.hostname === 'script.googleusercontent.com' || u.hostname.endsWith('-script.googleusercontent.com') || u.hostname.endsWith('.script.googleusercontent.com'));
+    } catch { return false; }
+  }
+  // Un formulario con iframe recibe la confirmación del servidor sin depender
+  // de fetch no-cors. Solo una respuesta de Google con el mismo ID confirma envío.
+  function deliverFeedback(note) {
+    return new Promise((resolve,reject) => {
+      const frame = document.createElement('iframe'), form = document.createElement('form');
+      frame.hidden = true; frame.name = 'rumboFeedback_' + feedbackID(); frame.title = 'Confirmación del envío de la mejora';
+      form.hidden = true; form.method = 'POST'; form.action = FEEDBACK_URL; form.target = frame.name;
+      const payload = {id:note.id,course:note.course,section:note.section,kind:note.kind,task:note.task,result:note.result,expect:note.expect};
+      for (const [name,value] of Object.entries({payload:JSON.stringify(payload),responseMode:'iframe'})) {
+        const input = document.createElement('input');input.type='hidden';input.name=name;input.value=value;form.append(input);
+      }
+      let timer;
+      const cleanup = () => { clearTimeout(timer);window.removeEventListener('message',receive);form.remove();frame.remove(); };
+      const receive = event => {
+        const data = event.data;
+        if (!isFeedbackOrigin(event.origin) || !data || data.type !== 'rumbo-feedback-result' || data.id !== note.id || typeof data.ok !== 'boolean') return;
+        cleanup();
+        if (data.ok) resolve(data);
+        else reject(new Error(typeof data.message === 'string' ? data.message.slice(0,220) : 'El profesor no pudo recibir esta mejora.'));
+      };
+      window.addEventListener('message',receive);
+      timer = setTimeout(() => { cleanup();reject(new Error('No se recibió confirmación. Revisa tu conexión y vuelve a intentarlo.')); },30000);
+      document.body.append(frame,form);
+      try { form.submit(); } catch { cleanup();reject(new Error('No se pudo iniciar el envío. Vuelve a intentarlo.')); }
+    });
+  }
+  async function sendFeedback(notes) {
+    if (feedbackBusy) return;
+    const pending = notes.filter(n => !n.sentAt && feedbackNotes.includes(n));
+    if (!pending.length) return;
+    if (navigator.onLine === false) {
+      const stored = saveNotes();renderNotes();
+      $('feedback-status').textContent = stored ? 'Sin conexión. Tu nota está guardada aquí; cuando vuelva internet, pulsa Enviar notas pendientes.' : 'Sin conexión y sin guardado local. Descarga tus notas antes de salir.';
+      return;
+    }
+    feedbackBusy = true;
+    let failure = '', stored = true;
+    try {
+      for (const note of pending) {
+        if (!feedbackNotes.includes(note)) continue;
+        sendingFeedbackID = note.id;renderNotes();
+        await deliverFeedback(note);
+        if (feedbackNotes.includes(note)) { note.sentAt = new Date().toISOString();stored = saveNotes() && stored; }
+      }
+    } catch (error) {
+      failure = error.message || 'No se pudo confirmar el envío.';
+      stored = saveNotes() && stored;
+    } finally {
+      feedbackBusy = false;sendingFeedbackID = '';renderNotes();
+    }
+    if (failure) {
+      $('feedback-status').textContent = failure + (stored ? ' La nota sigue en este navegador. Puedes reintentar con Enviar notas pendientes o descargarla.' : ' La nota sigue en esta sesión. Descárgala antes de salir.');
+    } else {
+      $('feedback-status').textContent = '¡Mejora recibida por el profesor! ' + feedbackSummary() + (stored?'':' Descarga un respaldo: no se pudo guardar la confirmación en este navegador.');
+      toast('Tu mejora fue recibida por el profesor. ¡Gracias por ayudar a mejorar Rumbo!');
+    }
   }
   $('open-feedback').addEventListener('click', () => {
     const current = location.hash.slice(1);
     $('feedback-section').value = ['dinero','futuro','riesgos'].includes(current) ? current : 'dinero';
+    if (!$('feedback-course').value && feedbackNotes.length) $('feedback-course').value = feedbackNotes.at(-1).course;
     renderNotes(); $('feedback-dialog').showModal();
   });
   $('feedback-form').addEventListener('submit', e => {
     e.preventDefault();
+    if (feedbackBusy) return;
     const task=$('feedback-task').value.trim(), result=$('feedback-result').value.trim();
     if (!task || !result) { $('feedback-status').textContent='Describe qué intentabas hacer y qué ocurrió.'; return; }
     if (feedbackNotes.length>=200) { $('feedback-status').textContent='Descarga tus notas y elimina alguna antes de agregar más.'; return; }
-    feedbackNotes.push({date:localDate(),section:$('feedback-section').selectedOptions[0].textContent,kind:$('feedback-kind').value,task,result,expect:$('feedback-expect').value.trim()});
+    const note = {id:feedbackID(),sentAt:'',date:localDate(),course:$('feedback-course').value.trim(),section:$('feedback-section').selectedOptions[0].textContent,kind:$('feedback-kind').value,task,result,expect:$('feedback-expect').value.trim()};
+    feedbackNotes.push(note);
     const stored=saveNotes(); renderNotes();
     $('feedback-task').value=''; $('feedback-result').value=''; $('feedback-expect').value='';
     if (!stored) $('feedback-status').textContent='La nota está en esta sesión, pero no se pudo guardar en el navegador. Descárgala antes de salir.';
+    sendFeedback([note]);
   });
   $('feedback-list').addEventListener('click', e => {
+    if (feedbackBusy) return;
+    const send = e.target.closest('[data-send-note]');
+    if (send) { const note=feedbackNotes[+send.dataset.sendNote];if(note)sendFeedback([note]);return; }
     const b=e.target.closest('[data-remove-note]'); if (!b) return;
     feedbackNotes.splice(+b.dataset.removeNote,1); const stored=saveNotes(); renderNotes();
     if(!stored) $('feedback-status').textContent='No se pudo actualizar el guardado. Descarga tus notas antes de salir.';
   });
+  $('send-pending-feedback').addEventListener('click', () => sendFeedback(feedbackNotes));
   $('download-feedback').addEventListener('click', () => {
-    const header='RUMBO · NOTAS DE LA PRUEBA EN AULA\nVersión 1.1 · 19 de octubre de 2026\nSin identificación del estudiante\n\n';
-    const body=feedbackNotes.map((n,i)=>`${i+1}. ${n.kind} · ${n.section} (${n.date})\nIntentaba: ${n.task}\nObservé: ${n.result}\nPropongo: ${n.expect || '(sin propuesta)'}\n`).join('\n');
+    const header='RUMBO · NOTAS DE LA PRUEBA EN AULA\nVersión 1.3 · 19 de octubre de 2026\nSin nombre ni correo del estudiante\n\n';
+    const body=feedbackNotes.map((n,i)=>`${i+1}. ${n.kind} · ${n.section} (${n.date})\nID: ${n.id}\nEstado: ${n.sentAt?'Recibida por el profesor':'Pendiente de envío'}\nCurso: ${n.course || '(sin curso)'}\nIntentaba: ${n.task}\nObservé: ${n.result}\nPropongo: ${n.expect || '(sin propuesta)'}\n`).join('\n');
     const url=URL.createObjectURL(new Blob([header+body],{type:'text/plain;charset=utf-8'}));
     const a=document.createElement('a');a.href=url;a.download='Rumbo_notas_'+localDate()+'.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
-    $('feedback-status').textContent='Archivo preparado. Compártelo con tu docente por el medio acordado.';
+    $('feedback-status').textContent='Respaldo preparado. Las notas pendientes todavía deben enviarse con Enviar notas pendientes o compartiendo este archivo con el profesor.';
   });
   const TUTORIAL_KEY = 'rumbo.tutorial.v1';
   const tutorialSteps = [
@@ -357,7 +448,7 @@
     {route:'futuro',target:'#products',title:'Conoce antes de elegir',copy:'Compara las fichas de cuenta de ahorro, depósito a plazo, fondo mutuo y acciones. Abre Entender este producto para leer más. Observa qué puede pasar con su valor y cuándo podrías recuperar el dinero.',tip:'Una meta cercana requiere revisar disponibilidad, costos y riesgo. Las fichas explican conceptos; no son ofertas ni recomendaciones de contratación.'},
     {route:'futuro',target:'#saving-form',title:'Construye un escenario de ahorro',copy:'Completa monto inicial, aporte mensual, meses, tasa anual efectiva e inflación supuesta. Luego pulsa Calcular mi escenario. Revisa el total, lo aportado, la variación y el valor en pesos de hoy.',tip:'Prueba $20.000 iniciales + $10.000 al mes durante 12 meses con tasa e inflación en 0%: el resultado es $140.000. Cambia una variable a la vez para comprender su efecto. La tasa es hipotética, no una promesa.'},
     {route:'riesgos',target:'#risk-form',title:'Mira muchas sesiones, no solo una racha',copy:'Elige modelo, fichas por ronda y rondas por sesión, y pulsa Analizar 300 sesiones. Compara la sesión individual, el promedio observado y el resultado esperado. Todos los valores son fichas ficticias.',tip:'Compara la ruleta con la moneda justa. En el control justo la expectativa es cero, pero algunas sesiones ganan y otras pierden. Con ventaja de la casa la expectativa es negativa; una ganancia puntual no cambia las probabilidades.'},
-    {route:'dinero',target:'#open-feedback',title:'Anota algo que podamos mejorar',copy:'Abre Anotar una mejora. Indica la sección, qué intentabas hacer, qué ocurrió y qué propones. Guarda la nota y usa Descargar mis notas para obtener un TXT y compartirlo con tu docente.',tip:'Las notas quedan en este navegador y no se entregan automáticamente. Usa ejemplos ficticios y evita nombres o información financiera real.'},
+    {route:'dinero',target:'#open-feedback',title:'Tu opinión llega al profesor',copy:'Abre Anotar una mejora. Indica la sección, qué intentabas hacer, qué ocurrió y qué propones. Puedes indicar tu curso. Pulsa Enviar al profesor y espera Recibida por el profesor. También puedes descargar tus notas como respaldo.',tip:'Solo se envía el comentario que escribes aquí. Tus movimientos, meta y simulaciones siguen en tu dispositivo. Si falta conexión o confirmación, la nota queda pendiente y puedes reintentar. Evita nombres e información financiera real.'},
     {route:'dinero',target:'#open-data',title:'Conserva tu avance y vuelve cuando quieras',copy:'En Mis datos y respaldo puedes descargar un JSON con tus movimientos, meta y misiones, o restaurar uno existente. Las notas de mejora se descargan por separado. Al cerrar el recorrido podrás seguir explorando.',tip:'El avance se guarda en este navegador. Si cambias de dispositivo o borras sus datos, necesitarás un respaldo. Puedes volver a abrir este tutorial con Aprender a usar Rumbo y consultar las ayudas de cada sección.'}
   ];
   let tutorialIndex=0, tutorialActive=false, tutorialReturnFocus=null;

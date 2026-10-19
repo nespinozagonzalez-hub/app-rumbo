@@ -33,7 +33,7 @@ El docente no recibe resultados ni identifica estudiantes. Para mostrar evidenci
 
 ## Prueba de usabilidad de hoy (15–20 minutos)
 
-Usar los datos ficticios de ejemplo. Pedir a cada estudiante que agregue un gasto, cambie una meta, compare dos productos y pruebe los dos modelos de probabilidad (ruleta y moneda justa). Luego registrar al menos una observación con **Anotar una mejora**, indicando tarea, resultado y propuesta. Descargar las notas TXT y entregarlas por el medio acordado con el docente. No se recogen nombres ni se envían resultados automáticamente.
+Usar los datos ficticios de ejemplo. Pedir a cada estudiante que agregue un gasto, cambie una meta, compare dos productos y pruebe los dos modelos de probabilidad (ruleta y moneda justa). Luego registrar al menos una observación con **Anotar una mejora**, indicando tarea, resultado y propuesta. Pulsar **Enviar al profesor** y esperar el estado **Recibida por el profesor**. Si una nota queda pendiente, usar **Enviar notas pendientes**; el TXT sirve como respaldo. No se piden nombres ni correos. El curso es opcional y únicamente se envían los comentarios: los movimientos financieros quedan en el dispositivo.
 
 ## Tutorial de uso
 

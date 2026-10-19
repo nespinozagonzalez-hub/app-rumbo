@@ -1,6 +1,6 @@
 # Rumbo · Tu dinero, tus decisiones
 
-Versión de aula 1.2 · 19 de octubre de 2026. Repositorio: `nespinozagonzalez-hub/test-tipo-jugadorV2`.
+Versión de aula 1.3 · 19 de octubre de 2026. Repositorio: `nespinozagonzalez-hub/app-rumbo`.
 
 La página principal aloja Rumbo. La copia del test previo está en `archivo/test-jugador.html`. El historial de Git conserva la versión anterior.
 
@@ -12,7 +12,7 @@ El recorrido no crea movimientos ni cambia metas automáticamente. Se puede aban
 
 ## Prueba con estudiantes
 
-El botón **Anotar una mejora** permite guardar observaciones sin identificación y descargarlas en un archivo TXT para compartir con el docente. No se envían automáticamente. Las notas quedan separadas de los movimientos financieros y se guardan localmente. El recorrido sugerido aparece al inicio.
+El botón **Anotar una mejora** abre un formulario sin nombre ni correo, con curso opcional. **Enviar al profesor** guarda la nota localmente e intenta enviarla a la planilla de Google Sheets configurada. Solo una confirmación del servidor con el mismo ID marca la nota como recibida. Si no hay conexión, hay un error o pasan 30 segundos sin confirmación, queda pendiente y se puede reintentar individualmente o con **Enviar notas pendientes**. Los reintentos conservan el ID para evitar duplicados. Se mantiene la descarga TXT como respaldo. Las notas antiguas se conservan y se pueden enviar con el botón de pendientes.
 
 
 App educativa para adolescentes, creada para enseñar organización del dinero, ahorro e inversión, y los riesgos matemáticos de las apuestas. Interfaz en español, montos de ejemplo en pesos chilenos y diseño adaptable a celulares.
@@ -28,23 +28,23 @@ Los ejemplos no implican recomendaciones ni tasas comerciales. Una apuesta puede
 ## Ejecutar
 
 - Abre `index.html` junto a la carpeta `assets`, o abre `Rumbo.html` (copia autocontenida) directamente en un navegador moderno.
-- No requiere instalación, API, cuentas de usuario ni backend.
+- No requiere instalación ni cuenta del estudiante. El envío de comentarios usa el receptor de Apps Script configurado; los demás módulos funcionan localmente.
 - Para servir el repositorio localmente: `python3 -m http.server 8080`, luego abre `http://localhost:8080`.
 - Si editas archivos, regenera la copia autocontenida con `python3 tools/bundle.py`.
 
 ## Publicación en GitHub Pages
 
-Esta entrega usa el repositorio existente `test-tipo-jugadorV2`, que ya sirve una página pública desde `main`. Se conserva su configuración de alojamiento y se reemplaza la página de entrada por Rumbo.
+Esta entrega usa el repositorio existente `app-rumbo`, que ya sirve una página pública desde `main`. Se conserva su configuración de alojamiento y se reemplaza la página de entrada por Rumbo.
 
-Dirección de la app: `https://nespinozagonzalez-hub.github.io/test-tipo-jugadorV2/`.
+Dirección de la app: `https://nespinozagonzalez-hub.github.io/app-rumbo/`.
 
-Las rutas de recursos son relativas y funcionan bajo ese subdirectorio. No se necesitan claves, backend ni workflows propios. `.nojekyll` evita procesamiento adicional.
+Las rutas de recursos son relativas y funcionan bajo ese subdirectorio. El envío de notas usa Apps Script con acceso Cualquier persona y ejecución como propietario. No se necesitan claves en el navegador ni workflows propios. `.nojekyll` evita procesamiento adicional.
 
 ## Datos y privacidad
 
-El guardado es local en `localStorage`, con la clave `rumbo.finanzas.v1`. Las notas de la prueba usan `rumbo.feedback.v1` y se descargan por separado. Movimientos, meta y progreso no se envían a GitHub ni a GamiAula. No se guardan nombres, RUT, cuentas bancarias o correos. La app usa datos ficticios al iniciar; se puede comenzar desde cero, exportar/importar JSON o borrar datos. Los porcentajes del reparto y los escenarios del laboratorio se restablecen al recargar: solo se conservan movimientos, meta y misiones.
+El guardado es local en `localStorage`, con la clave `rumbo.finanzas.v1`. Las notas de la prueba usan `rumbo.feedback.v1`; incluyen ID y confirmación de envío y se descargan por separado. Al pulsar Enviar al profesor solo se transmiten sección, tipo, texto del comentario, propuesta, ID y curso opcional. El servidor añade la fecha de recepción. Quitar una nota local o borrar los datos del navegador no elimina la fila de Google Sheets. Movimientos, meta y progreso no se envían a GitHub ni a GamiAula. No se guardan nombres, RUT, cuentas bancarias o correos. La app usa datos ficticios al iniciar; se puede comenzar desde cero, exportar/importar JSON o borrar datos. Los porcentajes del reparto y los escenarios del laboratorio se restablecen al recargar: solo se conservan movimientos, meta y misiones.
 
-Los archivos del respaldo contienen lo que el estudiante escribió. En equipos compartidos conviene usar datos ficticios. Borrar el almacenamiento del navegador elimina el progreso. GitHub Pages puede registrar solicitudes al sitio como proveedor del alojamiento, pero no recibe los movimientos que permanecen en el navegador. No hay analítica, publicidad ni recursos externos. Los enlaces a fuentes sí abren sus sitios externos.
+Los archivos del respaldo contienen lo que el estudiante escribió. En equipos compartidos conviene usar datos ficticios. Borrar el almacenamiento del navegador elimina el progreso. GitHub Pages puede registrar solicitudes al sitio como proveedor del alojamiento, pero no recibe los movimientos que permanecen en el navegador. No hay analítica ni publicidad. Solo el envío explícito de mejoras conecta con Apps Script; los enlaces a fuentes abren sus sitios externos. Los enlaces a fuentes sí abren sus sitios externos.
 
 ## Cálculos y controles
 
@@ -67,6 +67,10 @@ Ver [el modelo matemático](docs/MODELO_Y_FUENTES.md) y [la propuesta de uso en 
 
 ## Próximas decisiones de diseño
 
-Esta primera versión permite evaluar el contenido y la interacción. No incorpora identificación de estudiantes, datos del curso, notas, pagos ni integración bancaria. Si se añade una evaluación docente o sincronización, deben definirse qué datos son necesarios y cómo se protegen antes de implementar un backend.
+Esta primera versión permite evaluar el contenido y la interacción. No incorpora identificación de estudiantes, calificaciones, pagos ni integración bancaria. El curso opcional sirve para agrupar los comentarios de la prueba. No se sincronizan los movimientos financieros. El endpoint de comentarios no publica el contenido de la planilla.
 
 Código y materiales originales de esta entrega; no se añadió una licencia pública por defecto. Define la licencia de distribución antes de invitar contribuciones externas.
+
+## Recepción de mejoras 1.3
+
+El cliente usa un formulario POST hacia un iframe temporal y escucha el mensaje `rumbo-feedback-result`. Valida el origen de Apps Script y el ID antes de marcar la nota como recibida. No se usa `fetch` en modo `no-cors` como prueba de entrega. El servidor debe implementar el contrato de `backend/Code.gs`, con `responseMode=iframe`, y la implementación debe permitir Cualquier persona. Abrir su URL `/exec` sin iniciar sesión debe mostrar `ok: true`. La URL se configura en `FEEDBACK_URL` de `assets/app.js`.

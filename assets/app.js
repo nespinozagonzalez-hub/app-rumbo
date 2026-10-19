@@ -139,46 +139,136 @@
   $('export-data').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='rumbo-respaldo-'+today+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('data-feedback').textContent='Respaldo preparado. Consérvalo en un lugar privado.';});
   $('import-data').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>2e6)throw Error();const restored=F.validateBackup(JSON.parse(await file.text()));if(confirm('¿Reemplazar los datos de este navegador por el respaldo?')){replace(restored,'Respaldo restaurado.');const last=state.entries.map(x=>x.date).sort().at(-1);$('period').value=last?last.slice(0,7):month;renderBudget();$('data-feedback').textContent='Respaldo restaurado correctamente.';}}catch{$('data-feedback').textContent='El archivo no es un respaldo válido de Rumbo. Tus datos actuales se conservaron.';}finally{e.target.value='';}});
   const FEEDBACK_KEY = 'rumbo.feedback.v1';
+  const FEEDBACK_URL = 'https://script.google.com/macros/s/AKfycbzrpXnMjv36F1ESNvPO2W-GFxpCN7n3JaJ4R36auw8YTmhlFsSqaw80aNMdY8dboyQ/exec';
+  function feedbackID() {
+    return window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : 'rumbo-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,14);
+  }
   let feedbackNotes = [];
+  let feedbackBusy = false, sendingFeedbackID = '';
   try {
     const notes = JSON.parse(localStorage.getItem(FEEDBACK_KEY) || '[]');
-    if (Array.isArray(notes)) feedbackNotes = notes.slice(0,200).filter(n => n && ['section','kind','task','result','expect','date'].every(k => typeof n[k] === 'string' && n[k].length <= 700)).map(n => ({section:n.section,kind:n.kind,task:n.task,result:n.result,expect:n.expect,date:n.date}));
+    if (Array.isArray(notes)) feedbackNotes = notes.slice(0,200).filter(n => n && ['section','kind','task','result','expect','date'].every(k => typeof n[k] === 'string' && n[k].length <= 700)).map(n => ({
+      id:typeof n.id === 'string' && /^[A-Za-z0-9_-]{8,100}$/.test(n.id) ? n.id : feedbackID(),
+      section:n.section,kind:n.kind,task:n.task,result:n.result,expect:n.expect,date:n.date,
+      course:typeof n.course === 'string' ? n.course.slice(0,80) : '',
+      sentAt:typeof n.sentAt === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(n.sentAt) && n.sentAt.length < 40 ? n.sentAt : ''
+    }));
   } catch { /* Las notas no bloquean la app si el navegador impide guardarlas. */ }
+  // Persiste los ID de las notas antiguas para que sus reintentos no se dupliquen.
+  if (feedbackNotes.length) saveNotes();
   function saveNotes() {
     try { localStorage.setItem(FEEDBACK_KEY, JSON.stringify(feedbackNotes)); return true; }
     catch { return false; }
   }
+  function feedbackSummary() {
+    const sent = feedbackNotes.filter(n => n.sentAt).length, pending = feedbackNotes.length - sent;
+    return feedbackNotes.length ? `${sent} recibida(s) por el profesor · ${pending} pendiente(s) de envío.` : 'Escribe tu comentario y pulsa Enviar al profesor.';
+  }
   function renderNotes() {
-    $('feedback-list').innerHTML = feedbackNotes.map((n,i) => `<article><strong>${i+1}. ${escape(n.kind)} · ${escape(n.section)}</strong><p><b>Intentaba:</b> ${escape(n.task)}</p><p><b>Observé:</b> ${escape(n.result)}</p>${n.expect?`<p><b>Propongo:</b> ${escape(n.expect)}</p>`:''}<button class="text-button" data-remove-note="${i}">Eliminar esta nota</button></article>`).join('');
+    $('feedback-list').innerHTML = feedbackNotes.map((n,i) => `<article><div class="feedback-note-heading"><strong>${i+1}. ${escape(n.kind)} · ${escape(n.section)}</strong><span class="feedback-badge ${n.sentAt?'received':'pending'}">${n.sentAt?'Recibida por el profesor':sendingFeedbackID===n.id?'Enviando…':'Pendiente de envío'}</span></div>${n.course?`<p><b>Curso:</b> ${escape(n.course)}</p>`:''}<p><b>Intentaba:</b> ${escape(n.task)}</p><p><b>Observé:</b> ${escape(n.result)}</p>${n.expect?`<p><b>Propongo:</b> ${escape(n.expect)}</p>`:''}<div class="feedback-note-actions">${!n.sentAt?`<button class="text-button" data-send-note="${i}" ${feedbackBusy?'disabled':''}>${sendingFeedbackID===n.id?'Enviando…':'Enviar al profesor'}</button>`:''}<button class="text-button" data-remove-note="${i}" ${feedbackBusy?'disabled':''}>Quitar de este navegador</button></div></article>`).join('');
     $('download-feedback').disabled = feedbackNotes.length === 0;
-    $('feedback-status').textContent = feedbackNotes.length ? `${feedbackNotes.length} nota(s) listas para descargar. No se envían automáticamente.` : 'Todavía no has guardado notas.';
+    $('send-pending-feedback').disabled = feedbackBusy || !feedbackNotes.some(n => !n.sentAt);
+    $('feedback-submit').disabled = feedbackBusy;
+    $('feedback-submit').textContent = feedbackBusy ? 'Enviando…' : 'Enviar al profesor';
+    $('feedback-status').textContent = feedbackBusy ? 'Enviando tu mejora. Esperamos la confirmación de recepción…' : feedbackSummary();
+  }
+  function isFeedbackOrigin(origin) {
+    try {
+      const u = new URL(origin);
+      return u.protocol === 'https:' && (u.hostname === 'script.google.com' || u.hostname === 'script.googleusercontent.com' || u.hostname.endsWith('-script.googleusercontent.com') || u.hostname.endsWith('.script.googleusercontent.com'));
+    } catch { return false; }
+  }
+  // Un formulario con iframe recibe la confirmación del servidor sin depender
+  // de fetch no-cors. Solo una respuesta de Google con el mismo ID confirma envío.
+  function deliverFeedback(note) {
+    return new Promise((resolve,reject) => {
+      const frame = document.createElement('iframe'), form = document.createElement('form');
+      frame.hidden = true; frame.name = 'rumboFeedback_' + feedbackID(); frame.title = 'Confirmación del envío de la mejora';
+      form.hidden = true; form.method = 'POST'; form.action = FEEDBACK_URL; form.target = frame.name;
+      const payload = {id:note.id,course:note.course,section:note.section,kind:note.kind,task:note.task,result:note.result,expect:note.expect};
+      for (const [name,value] of Object.entries({payload:JSON.stringify(payload),responseMode:'iframe'})) {
+        const input = document.createElement('input');input.type='hidden';input.name=name;input.value=value;form.append(input);
+      }
+      let timer;
+      const cleanup = () => { clearTimeout(timer);window.removeEventListener('message',receive);form.remove();frame.remove(); };
+      const receive = event => {
+        const data = event.data;
+        if (!isFeedbackOrigin(event.origin) || !data || data.type !== 'rumbo-feedback-result' || data.id !== note.id || typeof data.ok !== 'boolean') return;
+        cleanup();
+        if (data.ok) resolve(data);
+        else reject(new Error(typeof data.message === 'string' ? data.message.slice(0,220) : 'El profesor no pudo recibir esta mejora.'));
+      };
+      window.addEventListener('message',receive);
+      timer = setTimeout(() => { cleanup();reject(new Error('No se recibió confirmación. Revisa tu conexión y vuelve a intentarlo.')); },30000);
+      document.body.append(frame,form);
+      try { form.submit(); } catch { cleanup();reject(new Error('No se pudo iniciar el envío. Vuelve a intentarlo.')); }
+    });
+  }
+  async function sendFeedback(notes) {
+    if (feedbackBusy) return;
+    const pending = notes.filter(n => !n.sentAt && feedbackNotes.includes(n));
+    if (!pending.length) return;
+    if (navigator.onLine === false) {
+      const stored = saveNotes();renderNotes();
+      $('feedback-status').textContent = stored ? 'Sin conexión. Tu nota está guardada aquí; cuando vuelva internet, pulsa Enviar notas pendientes.' : 'Sin conexión y sin guardado local. Descarga tus notas antes de salir.';
+      return;
+    }
+    feedbackBusy = true;
+    let failure = '', stored = true;
+    try {
+      for (const note of pending) {
+        if (!feedbackNotes.includes(note)) continue;
+        sendingFeedbackID = note.id;renderNotes();
+        await deliverFeedback(note);
+        if (feedbackNotes.includes(note)) { note.sentAt = new Date().toISOString();stored = saveNotes() && stored; }
+      }
+    } catch (error) {
+      failure = error.message || 'No se pudo confirmar el envío.';
+      stored = saveNotes() && stored;
+    } finally {
+      feedbackBusy = false;sendingFeedbackID = '';renderNotes();
+    }
+    if (failure) {
+      $('feedback-status').textContent = failure + (stored ? ' La nota sigue en este navegador. Puedes reintentar con Enviar notas pendientes o descargarla.' : ' La nota sigue en esta sesión. Descárgala antes de salir.');
+    } else {
+      $('feedback-status').textContent = '¡Mejora recibida por el profesor! ' + feedbackSummary() + (stored?'':' Descarga un respaldo: no se pudo guardar la confirmación en este navegador.');
+      toast('Tu mejora fue recibida por el profesor. ¡Gracias por ayudar a mejorar Rumbo!');
+    }
   }
   $('open-feedback').addEventListener('click', () => {
     const current = location.hash.slice(1);
     $('feedback-section').value = ['dinero','futuro','riesgos'].includes(current) ? current : 'dinero';
+    if (!$('feedback-course').value && feedbackNotes.length) $('feedback-course').value = feedbackNotes.at(-1).course;
     renderNotes(); $('feedback-dialog').showModal();
   });
   $('feedback-form').addEventListener('submit', e => {
     e.preventDefault();
+    if (feedbackBusy) return;
     const task=$('feedback-task').value.trim(), result=$('feedback-result').value.trim();
     if (!task || !result) { $('feedback-status').textContent='Describe qué intentabas hacer y qué ocurrió.'; return; }
     if (feedbackNotes.length>=200) { $('feedback-status').textContent='Descarga tus notas y elimina alguna antes de agregar más.'; return; }
-    feedbackNotes.push({date:localDate(),section:$('feedback-section').selectedOptions[0].textContent,kind:$('feedback-kind').value,task,result,expect:$('feedback-expect').value.trim()});
+    const note = {id:feedbackID(),sentAt:'',date:localDate(),course:$('feedback-course').value.trim(),section:$('feedback-section').selectedOptions[0].textContent,kind:$('feedback-kind').value,task,result,expect:$('feedback-expect').value.trim()};
+    feedbackNotes.push(note);
     const stored=saveNotes(); renderNotes();
     $('feedback-task').value=''; $('feedback-result').value=''; $('feedback-expect').value='';
     if (!stored) $('feedback-status').textContent='La nota está en esta sesión, pero no se pudo guardar en el navegador. Descárgala antes de salir.';
+    sendFeedback([note]);
   });
   $('feedback-list').addEventListener('click', e => {
+    if (feedbackBusy) return;
+    const send = e.target.closest('[data-send-note]');
+    if (send) { const note=feedbackNotes[+send.dataset.sendNote];if(note)sendFeedback([note]);return; }
     const b=e.target.closest('[data-remove-note]'); if (!b) return;
     feedbackNotes.splice(+b.dataset.removeNote,1); const stored=saveNotes(); renderNotes();
     if(!stored) $('feedback-status').textContent='No se pudo actualizar el guardado. Descarga tus notas antes de salir.';
   });
+  $('send-pending-feedback').addEventListener('click', () => sendFeedback(feedbackNotes));
   $('download-feedback').addEventListener('click', () => {
-    const header='RUMBO · NOTAS DE LA PRUEBA EN AULA\nVersión 1.1 · 19 de octubre de 2026\nSin identificación del estudiante\n\n';
-    const body=feedbackNotes.map((n,i)=>`${i+1}. ${n.kind} · ${n.section} (${n.date})\nIntentaba: ${n.task}\nObservé: ${n.result}\nPropongo: ${n.expect || '(sin propuesta)'}\n`).join('\n');
+    const header='RUMBO · NOTAS DE LA PRUEBA EN AULA\nVersión 1.3 · 19 de octubre de 2026\nSin nombre ni correo del estudiante\n\n';
+    const body=feedbackNotes.map((n,i)=>`${i+1}. ${n.kind} · ${n.section} (${n.date})\nID: ${n.id}\nEstado: ${n.sentAt?'Recibida por el profesor':'Pendiente de envío'}\nCurso: ${n.course || '(sin curso)'}\nIntentaba: ${n.task}\nObservé: ${n.result}\nPropongo: ${n.expect || '(sin propuesta)'}\n`).join('\n');
     const url=URL.createObjectURL(new Blob([header+body],{type:'text/plain;charset=utf-8'}));
     const a=document.createElement('a');a.href=url;a.download='Rumbo_notas_'+localDate()+'.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
-    $('feedback-status').textContent='Archivo preparado. Compártelo con tu docente por el medio acordado.';
+    $('feedback-status').textContent='Respaldo preparado. Las notas pendientes todavía deben enviarse con Enviar notas pendientes o compartiendo este archivo con el profesor.';
   });
   const TUTORIAL_KEY = 'rumbo.tutorial.v1';
   const tutorialSteps = [
@@ -189,7 +279,7 @@
     {route:'futuro',target:'#products',title:'Conoce antes de elegir',copy:'Compara las fichas de cuenta de ahorro, depósito a plazo, fondo mutuo y acciones. Abre Entender este producto para leer más. Observa qué puede pasar con su valor y cuándo podrías recuperar el dinero.',tip:'Una meta cercana requiere revisar disponibilidad, costos y riesgo. Las fichas explican conceptos; no son ofertas ni recomendaciones de contratación.'},
     {route:'futuro',target:'#saving-form',title:'Construye un escenario de ahorro',copy:'Completa monto inicial, aporte mensual, meses, tasa anual efectiva e inflación supuesta. Luego pulsa Calcular mi escenario. Revisa el total, lo aportado, la variación y el valor en pesos de hoy.',tip:'Prueba $20.000 iniciales + $10.000 al mes durante 12 meses con tasa e inflación en 0%: el resultado es $140.000. Cambia una variable a la vez para comprender su efecto. La tasa es hipotética, no una promesa.'},
     {route:'riesgos',target:'#risk-form',title:'Mira muchas sesiones, no solo una racha',copy:'Elige modelo, fichas por ronda y rondas por sesión, y pulsa Analizar 300 sesiones. Compara la sesión individual, el promedio observado y el resultado esperado. Todos los valores son fichas ficticias.',tip:'Compara la ruleta con la moneda justa. En el control justo la expectativa es cero, pero algunas sesiones ganan y otras pierden. Con ventaja de la casa la expectativa es negativa; una ganancia puntual no cambia las probabilidades.'},
-    {route:'dinero',target:'#open-feedback',title:'Anota algo que podamos mejorar',copy:'Abre Anotar una mejora. Indica la sección, qué intentabas hacer, qué ocurrió y qué propones. Guarda la nota y usa Descargar mis notas para obtener un TXT y compartirlo con tu docente.',tip:'Las notas quedan en este navegador y no se entregan automáticamente. Usa ejemplos ficticios y evita nombres o información financiera real.'},
+    {route:'dinero',target:'#open-feedback',title:'Tu opinión llega al profesor',copy:'Abre Anotar una mejora. Indica la sección, qué intentabas hacer, qué ocurrió y qué propones. Puedes indicar tu curso. Pulsa Enviar al profesor y espera Recibida por el profesor. También puedes descargar tus notas como respaldo.',tip:'Solo se envía el comentario que escribes aquí. Tus movimientos, meta y simulaciones siguen en tu dispositivo. Si falta conexión o confirmación, la nota queda pendiente y puedes reintentar. Evita nombres e información financiera real.'},
     {route:'dinero',target:'#open-data',title:'Conserva tu avance y vuelve cuando quieras',copy:'En Mis datos y respaldo puedes descargar un JSON con tus movimientos, meta y misiones, o restaurar uno existente. Las notas de mejora se descargan por separado. Al cerrar el recorrido podrás seguir explorando.',tip:'El avance se guarda en este navegador. Si cambias de dispositivo o borras sus datos, necesitarás un respaldo. Puedes volver a abrir este tutorial con Aprender a usar Rumbo y consultar las ayudas de cada sección.'}
   ];
   let tutorialIndex=0, tutorialActive=false, tutorialReturnFocus=null;
