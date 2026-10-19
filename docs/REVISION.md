@@ -24,3 +24,11 @@ Usar datos ficticios. Las notas no se envían automáticamente: cada estudiante 
 ## Límites de la revisión
 
 No se probó en un iPhone físico ni en todos los navegadores móviles. La prueba en aula está destinada a recoger mejoras de uso y contenido. El guardado depende del almacenamiento local del navegador; las notas se exportan por separado de los movimientos financieros.
+
+## Tutorial 1.2
+
+Se agregó un recorrido interactivo de nueve pasos, invitación en la primera visita, acceso permanente para repetirlo, ayuda por sección y controles para practicar sobre los elementos de la app. El recorrido no añade ni modifica movimientos o metas automáticamente.
+
+Pruebas con DOM correctas: inicio único, nueve pasos, visibilidad de cada objetivo, resaltado y práctica, retroceso, atajos por sección, cierre con Escape, repetición y conservación de datos financieros. Se volvió a comprobar el flujo de anotaciones y exportación tras integrar el tutorial.
+
+También se habilitaron los botones de ayuda y respaldo en la navegación móvil. La revisión en un iPhone físico sigue pendiente.

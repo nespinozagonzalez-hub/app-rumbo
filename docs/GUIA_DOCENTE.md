@@ -34,3 +34,7 @@ El docente no recibe resultados ni identifica estudiantes. Para mostrar evidenci
 ## Prueba de usabilidad de hoy (15–20 minutos)
 
 Usar los datos ficticios de ejemplo. Pedir a cada estudiante que agregue un gasto, cambie una meta, compare dos productos y pruebe los dos modelos de probabilidad (ruleta y moneda justa). Luego registrar al menos una observación con **Anotar una mejora**, indicando tarea, resultado y propuesta. Descargar las notas TXT y entregarlas por el medio acordado con el docente. No se recogen nombres ni se envían resultados automáticamente.
+
+## Tutorial de uso
+
+Antes de la prueba, invitar a abrir **Aprender a usar Rumbo**. El recorrido muestra nueve pasos con explicaciones, ejemplos ficticios y un botón para practicar sobre el control señalado. Se puede cerrar, repetir o abrir directamente desde la ayuda de cada sección. Completar el tutorial no modifica ni califica las misiones de aprendizaje.

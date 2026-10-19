@@ -1,8 +1,14 @@
 # Rumbo · Tu dinero, tus decisiones
 
-Versión de aula 1.1 · 19 de octubre de 2026. Repositorio: `nespinozagonzalez-hub/test-tipo-jugadorV2`.
+Versión de aula 1.2 · 19 de octubre de 2026. Repositorio: `nespinozagonzalez-hub/test-tipo-jugadorV2`.
 
 La página principal aloja Rumbo. La copia del test previo está en `archivo/test-jugador.html`. El historial de Git conserva la versión anterior.
+
+## Aprender a usar Rumbo
+
+El botón **Aprender a usar Rumbo** abre un tutorial de nueve pasos. Se ofrece en la primera visita y se puede repetir en cualquier momento. Cada paso explica una función y permite usar **Ver en la app** para practicar con el elemento resaltado. Un panel inferior permite volver a la explicación o continuar. También hay una ayuda desplegable en cada sección y accesos al paso correspondiente.
+
+El recorrido no crea movimientos ni cambia metas automáticamente. Se puede abandonar sin perder el avance financiero. Su estado local usa la clave `rumbo.tutorial.v1`.
 
 ## Prueba con estudiantes
 

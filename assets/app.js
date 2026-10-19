@@ -134,7 +134,7 @@
   $('open-data').addEventListener('click',()=>{$('data-feedback').textContent='';$('data-dialog').showModal();});
   $('open-sources').addEventListener('click',()=> $('sources-dialog').showModal());
   document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>$(b.dataset.close).close()));
-  $('clear-data').addEventListener('click',()=>{if(confirm('¿Borrar movimientos, meta y progreso de este navegador? Descarga un respaldo si quieres conservarlos.')){replace(empty(),'Datos borrados.');feedbackNotes=[];saveNotes();renderNotes();$('data-feedback').textContent='Datos anteriores eliminados. Tu espacio quedó vacío.';}});
+  $('clear-data').addEventListener('click',()=>{if(confirm('¿Borrar movimientos, meta y progreso de este navegador? Descarga un respaldo si quieres conservarlos.')){replace(empty(),'Datos borrados.');feedbackNotes=[];saveNotes();renderNotes();try{localStorage.removeItem(TUTORIAL_KEY);}catch{}$('data-feedback').textContent='Datos anteriores eliminados. Tu espacio quedó vacío.';}});
   $('load-demo').addEventListener('click',()=>{if(confirm('¿Reemplazar movimientos, meta y progreso por el ejemplo?')){replace(demo(),'Ejemplo cargado.');$('period').value=month;renderBudget();$('data-feedback').textContent='Ahora estás usando datos ficticios de ejemplo.';}});
   $('export-data').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='rumbo-respaldo-'+today+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('data-feedback').textContent='Respaldo preparado. Consérvalo en un lugar privado.';});
   $('import-data').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>2e6)throw Error();const restored=F.validateBackup(JSON.parse(await file.text()));if(confirm('¿Reemplazar los datos de este navegador por el respaldo?')){replace(restored,'Respaldo restaurado.');const last=state.entries.map(x=>x.date).sort().at(-1);$('period').value=last?last.slice(0,7):month;renderBudget();$('data-feedback').textContent='Respaldo restaurado correctamente.';}}catch{$('data-feedback').textContent='El archivo no es un respaldo válido de Rumbo. Tus datos actuales se conservaron.';}finally{e.target.value='';}});
@@ -180,7 +180,64 @@
     const a=document.createElement('a');a.href=url;a.download='Rumbo_notas_'+localDate()+'.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
     $('feedback-status').textContent='Archivo preparado. Compártelo con tu docente por el medio acordado.';
   });
-  window.addEventListener('hashchange',()=>{route();window.scrollTo({top:0,behavior:'instant'});$('main').focus({preventScroll:true});});
+  const TUTORIAL_KEY = 'rumbo.tutorial.v1';
+  const tutorialSteps = [
+    {route:'dinero',target:'#classroom-intro',title:'Tu dinero, tus decisiones',copy:'Rumbo tiene tres espacios: organiza tu dinero, comprende opciones de ahorro y explora las matemáticas de las apuestas. Este recorrido te mostrará los controles para que después puedas probarlos.',tip:'Empieza con los datos ficticios del ejemplo. No necesitas registrarte ni contar cuánto dinero tiene tu familia.'},
+    {route:'dinero',target:'#entry-form',title:'Registra lo que entra y lo que sale',copy:'Elige Ingreso o Gasto, escribe un monto en pesos chilenos, selecciona una categoría y agrega descripción y fecha. Pulsa Agregar. El mes se ajusta a la fecha del movimiento y las cifras de arriba se actualizan.',tip:'Prueba un gasto ficticio de $2.500. En el ejemplo, los gastos pasarán de $18.500 a $21.000. Puedes quitarlo con la × de su fila. El balance es ingresos menos gastos del mes, no un saldo bancario.'},
+    {route:'dinero',target:'#needs',title:'Dale un destino a tu presupuesto',copy:'Mueve las barras de Necesidades y Gustos. Lo que resta se asigna al plan de ahorro. Los porcentajes se calculan sobre los ingresos del mes seleccionado y entre los tres suman 100%.',tip:'Es una planificación que puedes adaptar a tu realidad. Mover una barra no transfiere dinero ni registra un gasto; los escenarios se restablecen al recargar.'},
+    {route:'dinero',target:'#goal-form',title:'Ponle nombre a tu próxima meta',copy:'Escribe qué quieres lograr, su costo total y cuánto dinero ya reservaste. Pulsa Guardar mi meta para actualizar el progreso. El plan estima cuántos meses tomaría reunir lo que falta si reservas la misma cantidad.',tip:'Ejemplo: meta $100.000 y ya reservado $25.000 significa 25%. Solo anota como reservado lo que realmente separaste; este campo no descuenta dinero del balance automáticamente.'},
+    {route:'futuro',target:'#products',title:'Conoce antes de elegir',copy:'Compara las fichas de cuenta de ahorro, depósito a plazo, fondo mutuo y acciones. Abre Entender este producto para leer más. Observa qué puede pasar con su valor y cuándo podrías recuperar el dinero.',tip:'Una meta cercana requiere revisar disponibilidad, costos y riesgo. Las fichas explican conceptos; no son ofertas ni recomendaciones de contratación.'},
+    {route:'futuro',target:'#saving-form',title:'Construye un escenario de ahorro',copy:'Completa monto inicial, aporte mensual, meses, tasa anual efectiva e inflación supuesta. Luego pulsa Calcular mi escenario. Revisa el total, lo aportado, la variación y el valor en pesos de hoy.',tip:'Prueba $20.000 iniciales + $10.000 al mes durante 12 meses con tasa e inflación en 0%: el resultado es $140.000. Cambia una variable a la vez para comprender su efecto. La tasa es hipotética, no una promesa.'},
+    {route:'riesgos',target:'#risk-form',title:'Mira muchas sesiones, no solo una racha',copy:'Elige modelo, fichas por ronda y rondas por sesión, y pulsa Analizar 300 sesiones. Compara la sesión individual, el promedio observado y el resultado esperado. Todos los valores son fichas ficticias.',tip:'Compara la ruleta con la moneda justa. En el control justo la expectativa es cero, pero algunas sesiones ganan y otras pierden. Con ventaja de la casa la expectativa es negativa; una ganancia puntual no cambia las probabilidades.'},
+    {route:'dinero',target:'#open-feedback',title:'Anota algo que podamos mejorar',copy:'Abre Anotar una mejora. Indica la sección, qué intentabas hacer, qué ocurrió y qué propones. Guarda la nota y usa Descargar mis notas para obtener un TXT y compartirlo con tu docente.',tip:'Las notas quedan en este navegador y no se entregan automáticamente. Usa ejemplos ficticios y evita nombres o información financiera real.'},
+    {route:'dinero',target:'#open-data',title:'Conserva tu avance y vuelve cuando quieras',copy:'En Mis datos y respaldo puedes descargar un JSON con tus movimientos, meta y misiones, o restaurar uno existente. Las notas de mejora se descargan por separado. Al cerrar el recorrido podrás seguir explorando.',tip:'El avance se guarda en este navegador. Si cambias de dispositivo o borras sus datos, necesitarás un respaldo. Puedes volver a abrir este tutorial con Aprender a usar Rumbo y consultar las ayudas de cada sección.'}
+  ];
+  let tutorialIndex=0, tutorialActive=false, tutorialReturnFocus=null;
+  function rememberTutorial(value){try{localStorage.setItem(TUTORIAL_KEY,value);}catch{ /* El tutorial sigue disponible aunque no se pueda guardar su estado. */ }}
+  function clearTutorialHighlight(){document.querySelectorAll('.tutorial-highlight').forEach(el=>el.classList.remove('tutorial-highlight'));}
+  function setTutorialRoute(step){
+    history.replaceState(null,'','#'+step.route);route();
+  }
+  function updateTutorial(){
+    const step=tutorialSteps[tutorialIndex],last=tutorialIndex===tutorialSteps.length-1;
+    clearTutorialHighlight();setTutorialRoute(step);
+    $('tutorial-title').textContent=step.title;$('tutorial-copy').textContent=step.copy;$('tutorial-tip').textContent=step.tip;
+    $('tutorial-step-label').textContent=`PASO ${tutorialIndex+1} DE ${tutorialSteps.length}`;
+    $('tutorial-progress').value=tutorialIndex+1;$('tutorial-progress').textContent=`${tutorialIndex+1} de ${tutorialSteps.length}`;
+    $('tutorial-prev').disabled=tutorialIndex===0;
+    $('tutorial-next').textContent=last?'Terminar tutorial ✓':tutorialIndex===0?'Empezar recorrido →':'Siguiente →';
+    $('tutorial-dock-next').textContent=last?'Terminar ✓':'Siguiente →';
+    $('tutorial-dock-count').textContent=`TUTORIAL · ${tutorialIndex+1} DE ${tutorialSteps.length}`;
+    $('tutorial-dock-title').textContent=step.title;
+    $('tutorial-dock').hidden=true;
+    if(!$('tutorial-dialog').open)$('tutorial-dialog').showModal();
+  }
+  function startTutorial(index=0){
+    tutorialReturnFocus=document.activeElement;tutorialIndex=index;tutorialActive=true;
+    document.body.classList.add('tutorial-active');rememberTutorial('seen');updateTutorial();
+  }
+  function stopTutorial(completed=false){
+    tutorialActive=false;clearTutorialHighlight();document.body.classList.remove('tutorial-active');
+    $('tutorial-dock').hidden=true;$('tutorial-dialog').close();
+    if(completed){rememberTutorial('completed');toast('Recorrido completado. Puedes volver a abrirlo cuando quieras.');}
+    if(tutorialReturnFocus?.isConnected&&tutorialReturnFocus.getClientRects().length)tutorialReturnFocus.focus({preventScroll:true});
+    else document.querySelector('[data-start-tutorial="0"]').focus({preventScroll:true});
+  }
+  function nextTutorial(){if(tutorialIndex===tutorialSteps.length-1)stopTutorial(true);else{tutorialIndex++;updateTutorial();}}
+  $('tutorial-next').addEventListener('click',nextTutorial);
+  $('tutorial-dock-next').addEventListener('click',nextTutorial);
+  $('tutorial-prev').addEventListener('click',()=>{if(tutorialIndex>0){tutorialIndex--;updateTutorial();}});
+  $('tutorial-view').addEventListener('click',()=>{
+    const target=document.querySelector(tutorialSteps[tutorialIndex].target);
+    $('tutorial-dialog').close();$('tutorial-dock').hidden=false;
+    if(target){target.classList.add('tutorial-highlight');if(!target.hasAttribute('tabindex'))target.setAttribute('tabindex','-1');target.scrollIntoView({block:'center',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});target.focus({preventScroll:true});}
+  });
+  $('tutorial-dock-explain').addEventListener('click',updateTutorial);
+  ['tutorial-close','tutorial-skip','tutorial-dock-exit'].forEach(id=>$(id).addEventListener('click',()=>stopTutorial(false)));
+  $('tutorial-dialog').addEventListener('cancel',e=>{e.preventDefault();stopTutorial(false);});
+  document.querySelectorAll('[data-start-tutorial]').forEach(b=>b.addEventListener('click',()=>startTutorial(+b.dataset.startTutorial)));
+  window.addEventListener('hashchange',()=>{if(tutorialActive)stopTutorial(false);route();window.scrollTo({top:0,behavior:'instant'});$('main').focus({preventScroll:true});});
   renderBudget();renderProjection();renderRisk();renderProgress();route();persist();
   if(startupMessage)toast(startupMessage);
+  try{if(!localStorage.getItem(TUTORIAL_KEY))startTutorial(0);}catch{ /* El botón de ayuda queda disponible si el navegador bloquea el almacenamiento. */ }
 })();
