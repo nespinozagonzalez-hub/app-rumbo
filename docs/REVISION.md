@@ -1,29 +1,26 @@
-# Revisión de esta entrega
+# Revisión de la versión de aula
+
+Fecha: 19 de octubre de 2026.
 
 ## Comprobado
 
-- Las nueve pruebas matemáticas de `tests/finance.test.cjs` pasaron.
-- Sintaxis de ambos archivos JavaScript validada con Node.js.
-- IDs HTML únicos, controles con etiquetas, referencias DOM y existencia de recursos locales verificados.
-- La copia `Rumbo.html` incluye CSS, JavaScript e ícono y no depende de archivos externos para funcionar.
-- Prueba de ejecución con DOM simulado: arranque del código de la app, gráficos SVG, balance inicial, alta de movimiento, protección de texto frente a inserción de HTML, actualización de meta, guardado local y cambio de sección.
-- En el modelo aleatorio se conservan resultados ganadores y perdedores; no se manipula la simulación para imponer pérdidas.
+- Nueve pruebas matemáticas correctas: balances, tasa efectiva, inflación, aportes y probabilidades.
+- Prueba con DOM: movimientos, metas, simuladores, misiones, notas y exportación.
+- Publicación de la app en GitHub Pages completada correctamente para el commit 3457682fe9b3f6fe0cb113d9f0b4b856ba06e507.
+- Revisión visual en Chrome sobre el sitio publicado.
+- Navegación entre las tres secciones comprobada en el navegador.
+- Registro de un gasto ficticio de $2.500: gastos pasan de $18.500 a $21.000 y balance de $46.500 a $44.000. Eliminación posterior correcta.
+- Ahorro a tasa 0%: $20.000 iniciales y 12 aportes de $10.000 producen $140.000 nominales.
+- Control de moneda justa: ventaja 0% y expectativa 0 fichas, conservando variación observada.
+- Nota de mejora guardada y archivo TXT descargado desde el navegador; la nota ficticia de QA fue eliminada.
+- Test anterior conservado en archivo/test-jugador.html y en el historial Git.
 
-## Pendiente
+## Uso con estudiantes
 
-- Revisión visual en navegador real: no estuvo disponible en este entorno. El DOM simulado no verifica geometría, presentación, validación HTML nativa, descargas ni comportamiento de diálogos en Safari/Chrome.
-- Probar en teléfono y computador al publicar, especialmente tablas desplazables, formularios, respaldo y navegación por teclado.
-- Verificar la publicación del nuevo contenido en el alojamiento ya activo de `test-tipo-jugadorV2`. No se crea un repositorio nuevo.
+App: https://nespinozagonzalez-hub.github.io/test-tipo-jugadorV2/
 
-## Checklist de publicación
+Usar datos ficticios. Las notas no se envían automáticamente: cada estudiante debe descargarlas y compartirlas por el medio acordado. No se requiere registro.
 
-- [x] Tres secciones funcionales.
-- [x] Diseño con adaptación responsive y navegación accesible.
-- [x] Ejemplos, guardado local y respaldo JSON.
-- [x] Simulador de ahorro con inflación.
-- [x] Laboratorio de probabilidades con control justo.
-- [x] Fuentes primarias, guía docente y explicación del modelo.
-- [x] Archivos organizados para la raíz de GitHub Pages.
-- [x] Repositorio existente identificado: `test-tipo-jugadorV2`.
-- [ ] Pages habilitado y URL confirmada.
-- [ ] Revisión visual y de interacción en navegador real.
+## Límites de la revisión
+
+No se probó en un iPhone físico ni en todos los navegadores móviles. La prueba en aula está destinada a recoger mejoras de uso y contenido. El guardado depende del almacenamiento local del navegador; las notas se exportan por separado de los movimientos financieros.
