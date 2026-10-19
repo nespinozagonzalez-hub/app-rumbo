@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Test de Tipo de Jugador: Bartle + Hexad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #141a33;
+      --accent: #8f7bff;
+      --accent-soft: #8f7bff22;
+      --accent-strong: #ffd86b;
+      --text-main: #f5f5ff;
+      --text-muted: #a6accd;
+      --danger: #ff6b81;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      background: radial-gradient(circle at top, #283361 0, #050814 55%, #020308 100%);
+      color: var(--text-main);
+    }
+
+    .app {
+      width: 100%;
+      max-width: 1100px;
+      margin: 16px;
+      background: linear-gradient(145deg, #10152b 0%, #070b18 100%);
+      border-radius: 18px;
+      padding: 18px 18px 24px;
+      box-shadow:
+        0 0 0 1px #ffffff11,
+        0 18px 60px #000000cc;
+    }
+
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #ffffff11;
+      padding-bottom: 12px;
+    }
+
+    .header-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: radial-gradient(circle at 30% 20%, #ffd86b 0, #ff9f43 35%, #8f7bff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px #ffd86b55;
+      flex-shrink: 0;
+    }
+
+    .header-icon span {
+      font-size: 26px;
+    }
+
+    .header-text h1 {
+      margin: 0;
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+    }
+
+    .header-text p {
+      margin: 2px 0 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .layout {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #1b2344 0, #0c1124 48%, #050814 100%);
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid #ffffff11;
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      margin: 0 0 10px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff0f;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .question-number {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .question-text {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 9px;
+      border-radius: 12px;
+      background: #ffffff07;
+      border: 1px solid #ffffff11;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.15s, border-color 0.15s, transform 0.06s;
+    }
+
+    .option-label:hover {
+      background: #ffffff0f;
+      border-color: var(--accent-soft);
+      transform: translateY(-1px);
+    }
+
+    .option-input {
+      accent-color: var(--accent);
+    }
+
+    .helper-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      background: #ffffff0f;
+      color: var(--text-main);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s, transform 0.06s, box-shadow 0.15s, border-color 0.15s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent) 0%, #c56bff 50%, #ffd86b 100%);
+      color: #120e20;
+      box-shadow: 0 0 18px #8f7bff77;
+      border-color: #ffffff66;
+      font-weight: 600;
+    }
+
+    .btn-secondary {
+      background: #ffffff0a;
+      border-color: #ffffff22;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+      box-shadow: none;
+    }
+
+    .btn-download,
+    .btn-reset {
+      margin-top: 8px;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .progress {
+      margin-top: 8px;
+      height: 5px;
+      border-radius: 999px;
+      background: #ffffff08;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ffd86b, #ff9f43, #ff6bcb);
+      transition: width 0.25s ease-out;
+    }
+
+    .results-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .radar-container {
+      background: radial-gradient(circle at top, #222a4f 0, #0b1020 55%);
+      border-radius: 14px;
+      padding: 10px;
+      border: 1px solid #ffffff11;
+    }
+
+    .radar-title {
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .radar-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .radar-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 4px;
+    }
+
+    .radar-legend {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 8px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .pill {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #ffffff0a;
+      border: 1px solid #ffffff11;
+    }
+
+    .summary {
+      margin-top: 10px;
+      font-size: 0.86rem;
+    }
+
+    .summary strong {
+      color: var(--accent-strong);
+    }
+
+    .alert {
+      margin-top: 6px;
+      font-size: 0.8rem;
+      color: var(--danger);
+      display: none;
+    }
+
+    .footer-note {
+      margin-top: 10px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .tagline {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .tagline span {
+      color: var(--accent-strong);
+    }
+
+    /* Estilos para impresión (PDF) */
+    @media print {
+      body {
+        background: #ffffff;
+      }
+      .app {
+        box-shadow: none;
+        margin: 0;
+        border-radius: 0;
+        background: #ffffff;
+        color: #000000;
+      }
+      .card {
+        background: #ffffff;
+        border-color: #cccccc;
+      }
+      .header-icon {
+        box-shadow: none;
+      }
+      .btn,
+      .progress,
+      .alert {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <div class="header-icon">
+      <span>🎮</span>
+    </div>
+    <div class="header-text">
+      <h1>Test de Tipo de Jugador — Bartle + Hexad</h1>
+      <p>Responde 12 afirmaciones y obtén tu arquetipo principal y secundario en ambos modelos.</p>      
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- PREGUNTAS -->
+    <div class="card">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        <span>Cuestionario interactivo</span>
+      </div>
+      <h2>Responde según cuánto te identifica cada frase</h2>
+      <p>Usa la escala de “Nada” a “Mucho”. No hay respuestas buenas o malas: solo distintos estilos de jugador.</p>
+
+      <div id="question-block">
+        <div class="question-number" id="question-number"></div>
+        <div class="question-text" id="question-text"></div>
+
+        <div class="options">
+          <label class="option-label">
+            <input class="option-input" type="radio" name="answer" value="0">
+            <span>No me identifica</span>
+          </label>
+          <label class="option-label">
+            <input class="option-input" type="radio" name="answer" value="1">
+            <span>Me identifica un poco</span>
+          </label>
+          <label class="option-label">
+            <input class="option-input" type="radio" name="answer" value="2">
+            <span>Me identifica bastante</span>
+          </label>
+          <label class="option-label">
+            <input class="option-input" type="radio" name="answer" value="3">
+            <span>Me identifica mucho</span>
+          </label>
+        </div>
+
+        <div class="helper-text">
+          Responde pensando en cómo juegas, aprendes y participas en sistemas gamificados o juegos.
+        </div>
+
+        <div class="alert" id="alert">Por favor, selecciona una opción antes de continuar.</div>
+
+        <div class="buttons">
+          <button class="btn btn-secondary" id="btn-back">← Anterior</button>
+          <button class="btn btn-primary" id="btn-next">Siguiente →</button>
+        </div>
+
+        <div class="progress">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTADOS -->
+    <div class="card">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        <span>Resultados en tiempo real</span>
+      </div>
+      <h2>Tu perfil de jugador</h2>
+      <p>Al finalizar el cuestionario verás tus puntuaciones visualizadas en dos “hexágonos de skill” (radar) y un resumen interpretativo.</p>
+
+      <div class="results-grid">
+        <div class="radar-container">
+          <div class="radar-title">
+            <span>Modelo Bartle</span>
+            <span class="radar-subtitle">Achiever · Explorer · Socializer · Killer</span>
+          </div>
+          <div class="radar-wrapper">
+            <div id="bartle-radar"></div>
+          </div>
+          <div class="radar-legend" id="bartle-legend"></div>
+        </div>
+
+        <div class="radar-container">
+          <div class="radar-title">
+            <span>Modelo Hexad</span>
+            <span class="radar-subtitle">Achiever · Free Spirit · Socializer · Philanthropist · Player · Disruptor</span>
+          </div>
+          <div class="radar-wrapper">
+            <div id="hexad-radar"></div>
+          </div>
+          <div class="radar-legend" id="hexad-legend"></div>
+        </div>
+      </div>
+
+      <div class="summary" id="summary-text">
+        Completa el cuestionario para ver aquí tu arquetipo principal y secundario, junto a una descripción en español.
+      </div>
+
+      <button class="btn btn-secondary btn-download" id="btn-download">📄 Descargar tu resultado y descripción (PDF)</button>
+      <button class="btn btn-secondary btn-reset" id="btn-reset">🔄 Reiniciar el test</button>
+
+      <div class="footer-note">
+        Nota: Esta herramienta es orientativa y educativa. No busca “encasillarte”, sino ofrecerte un lenguaje para reflexionar sobre tus motivaciones como jugador y diseñador de experiencias.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // --- Definición de modelos ---
+  const bartleTypes = ["Achiever", "Explorer", "Socializer", "Killer"];
+  const hexadTypes = ["Achiever", "Free Spirit", "Socializer", "Philanthropist", "Player", "Disruptor"];
+
+  // Descripciones en español
+  const bartleDescriptions = {
+    "Achiever": "Achiever (logrador/a): disfrutas completar objetivos, avanzar, optimizar y ver tu progreso. Sueles sentir satisfacción al desbloquear logros, terminar misiones y ver números subir.",
+    "Explorer": "Explorer (explorador/a): te mueve la curiosidad. Te gusta entender cómo funcionan los sistemas, descubrir caminos ocultos, probar cosas nuevas y experimentar sin que necesariamente haya un premio explícito.",
+    "Socializer": "Socializer (socializador/a): la experiencia tiene sentido cuando hay otras personas. Valoras las conversaciones, el trabajo colaborativo, construir comunidad y sentirte parte de un grupo.",
+    "Killer": "Killer (desafiante/competitivo): te motivan la competencia, los duelos, los rankings y poner a prueba tu capacidad frente a otros. También puedes disfrutar desafiando las reglas y tensando un poco el sistema."
+  };
+
+  const hexadDescriptions = {
+    "Achiever": "Achiever (competencia y maestría): disfrutas superar retos, desarrollar habilidades y perfeccionar tu desempeño. Te motivan los desafíos bien diseñados y el feedback sobre tu progreso.",
+    "Free Spirit": "Free Spirit (espíritu libre): valoras la autonomía, la exploración y la creatividad. Prefieres sistemas que te permitan decidir tu camino, experimentar y personalizar la experiencia.",
+    "Socialiser": "Socialiser (vínculos sociales): te importa relacionarte, conversar, colaborar y sentirte parte de una red de personas. Las mecánicas sociales y cooperativas suelen engancharte mucho.",
+    "Philanthropist": "Philanthropist (propósito y ayuda): te mueve contribuir, ayudar a otros y aportar a algo con sentido. Te gustan las experiencias donde tu participación mejora la experiencia de las demás personas.",
+    "Player": "Player (recompensas e incentivos): respondes bien a recompensas claras: puntos, monedas, badges, descuentos, premios. No es algo superficial: simplemente disfrutas cuando el sistema reconoce y tangibiliza tu participación.",
+    "Disruptor": "Disruptor (cambio y cuestionamiento): tiendes a cuestionar las reglas, proponer cambios y hackear sistemas para que funcionen mejor (o al menos diferente). Te interesan las experiencias donde puedas experimentar con las estructuras del juego."
+  };
+
+  const reflectionText = "Importante: ningún test puede capturar toda la complejidad de una persona. Tu perfil puede variar según el contexto, el tipo de juego, la comunidad y el momento de tu vida. Usa este resultado como un mapa aproximado, no como una etiqueta fija. Como humanos, tenemos muchas capas y podemos activar distintos \"tipos de jugador\" según las mecánicas, la narrativa y el propósito de la experiencia.";
+
+  // --- Preguntas ---
+  const questions = [
+    {
+      text: "Me encanta completar objetivos claros y sentir que avanzo o subo de nivel.",
+      bartle: { "Achiever": 1 },
+      hexad: { "Achiever": 1, "Player": 0.5 }
+    },
+    {
+      text: "Disfruto explorar sistemas, descubrir trucos, caminos ocultos o nuevas posibilidades.",
+      bartle: { "Explorer": 1 },
+      hexad: { "Free Spirit": 1 }
+    },
+    {
+      text: "Me gusta conectar con otras personas, conversar, colaborar y sentirme parte de un grupo.",
+      bartle: { "Socializer": 1 },
+      hexad: { "Socialiser": 1, "Philanthropist": 0.5 }
+    },
+    {
+      text: "Me motivan los desafíos competitivos, rankings y demostrar que puedo estar arriba.",
+      bartle: { "Killer": 1, "Achiever": 0.5 },
+      hexad: { "Player": 1 }
+    },
+    {
+      text: "Prefiero tener libertad para experimentar y hacer las cosas a mi manera dentro de un sistema.",
+      bartle: { "Explorer": 0.8 },
+      hexad: { "Free Spirit": 1 }
+    },
+    {
+      text: "Me llena ayudar a otros, compartir recursos o conocimientos y contribuir a algo más grande.",
+      bartle: { "Socializer": 0.8 },
+      hexad: { "Philanthropist": 1 }
+    },
+    {
+      text: "Me motivan las recompensas tangibles (puntos, monedas, premios, descuentos, etc.).",
+      bartle: { "Achiever": 1 },
+      hexad: { "Player": 1 }
+    },
+    {
+      text: "Si veo que un sistema es injusto o aburrido, me dan ganas de desafiarlo o cambiar las reglas.",
+      bartle: { "Killer": 1 },
+      hexad: { "Disruptor": 1 }
+    },
+    {
+      text: "Disfruto las historias largas, con misiones encadenadas y mundos que se van desarrollando.",
+      bartle: { "Explorer": 0.9 },
+      hexad: { "Free Spirit": 0.8, "Achiever": 0.4 }
+    },
+    {
+      text: "Me encanta personalizar mi experiencia: avatar, entorno, forma de jugar o aprender.",
+      bartle: { "Explorer": 0.7 },
+      hexad: { "Free Spirit": 1, "Player": 0.6 }
+    },
+    {
+      text: "Me motiva más colaborar con otros que competir contra ellos.",
+      bartle: { "Socializer": 1 },
+      hexad: { "Socialiser": 1, "Philanthropist": 0.6 }
+    },
+    {
+      text: "Cuando algo no tiene sentido, me gusta cuestionarlo, proponer cambios o incluso 'hackearlo' para que funcione mejor.",
+      bartle: { "Killer": 0.8, "Explorer": 0.5 },
+      hexad: { "Disruptor": 1 }
+    }
+  ];
+
+  // --- Estado ---
+  let currentIndex = 0;
+  let answers = Array(questions.length).fill(null);
+
+  const scoresBartle = {};
+  const scoresHexad = {};
+  bartleTypes.forEach(t => scoresBartle[t] = 0);
+  hexadTypes.forEach(t => scoresHexad[t] = 0);
+
+  // --- Referencias DOM ---
+  const questionNumberEl = document.getElementById("question-number");
+  const questionTextEl = document.getElementById("question-text");
+  const alertEl = document.getElementById("alert");
+  const progressBarEl = document.getElementById("progress-bar");
+  const btnNext = document.getElementById("btn-next");
+  const btnBack = document.getElementById("btn-back");
+  const btnDownload = document.getElementById("btn-download");
+  const btnReset = document.getElementById("btn-reset");
+  const summaryTextEl = document.getElementById("summary-text");
+  const bartleRadarEl = document.getElementById("bartle-radar");
+  const hexadRadarEl = document.getElementById("hexad-radar");
+  const bartleLegendEl = document.getElementById("bartle-legend");
+  const hexadLegendEl = document.getElementById("hexad-legend");
+
+  const optionInputs = document.querySelectorAll(".option-input");
+
+  // --- Funciones principales ---
+  function loadQuestion(index) {
+    const q = questions[index];
+    questionNumberEl.textContent = `Pregunta ${index + 1} de ${questions.length}`;
+    questionTextEl.textContent = q.text;
+    alertEl.style.display = "none";
+
+    const prevValue = answers[index];
+    optionInputs.forEach(input => {
+      input.checked = (prevValue !== null && Number(input.value) === prevValue);
+    });
+
+    btnBack.disabled = (index === 0);
+    btnNext.textContent = (index === questions.length - 1) ? "Ver resultados" : "Siguiente →";
+
+    const progress = ((index) / questions.length) * 100;
+    progressBarEl.style.width = `${progress}%`;
+  }
+
+  function getSelectedValue() {
+    let selected = null;
+    optionInputs.forEach(input => {
+      if (input.checked) selected = Number(input.value);
+    });
+    return selected;
+  }
+
+  function resetScores() {
+    bartleTypes.forEach(t => scoresBartle[t] = 0);
+    hexadTypes.forEach(t => scoresHexad[t] = 0);
+  }
+
+  function computeScores() {
+    resetScores();
+    questions.forEach((q, index) => {
+      const value = answers[index];
+      if (value === null) return;
+      Object.keys(q.bartle).forEach(type => {
+        scoresBartle[type] += value * q.bartle[type];
+      });
+      Object.keys(q.hexad).forEach(type => {
+        scoresHexad[type] += value * q.hexad[type];
+      });
+    });
+  }
+
+  function computePercentages(scores, types) {
+    let maxScore = 0;
+    types.forEach(t => {
+      if (scores[t] > maxScore) maxScore = scores[t];
+    });
+    if (maxScore === 0) {
+      return types.map(() => 0);
+    }
+    return types.map(t => Math.round((scores[t] / maxScore) * 100));
+  }
+
+  // --- Radar genérico (ajustado para que no se corten labels) ---
+  function drawRadar(container, labels, percentages, colorStroke, colorFill) {
+    const size = 320;
+    const cx = size / 2;
+    const cy = size / 2;
+    const maxRadius = size * 0.34;
+    const n = labels.length;
+
+    function pointAt(angle, radiusFactor) {
+      const r = maxRadius * radiusFactor;
+      const x = cx + r * Math.cos(angle);
+      const y = cy + r * Math.sin(angle);
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    }
+
+    function polygonPoints(factorArray) {
+      let pts = "";
+      for (let i = 0; i < n; i++) {
+        const angle = (2 * Math.PI / n) * i - Math.PI / 2;
+        const factor = Array.isArray(factorArray) ? (factorArray[i] / 100) : factorArray;
+        pts += pointAt(angle, factor) + " ";
+      }
+      return pts.trim();
+    }
+
+    const gridLevels = [0.2, 0.4, 0.6, 0.8, 1.0];
+
+    let labelsSvg = "";
+    for (let i = 0; i < n; i++) {
+      const angle = (2 * Math.PI / n) * i - Math.PI / 2;
+      const labelRadius = maxRadius + 10;
+      const x = cx + labelRadius * Math.cos(angle);
+      const y = cy + labelRadius * Math.sin(angle);
+      const align = Math.cos(angle) > 0.2 ? "start" : (Math.cos(angle) < -0.2 ? "end" : "middle");
+      labelsSvg += `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}"
+                        text-anchor="${align}" dominant-baseline="middle"
+                        fill="#cfd4ff" font-size="10">${labels[i]}</text>`;
+    }
+
+    let gridSvg = "";
+    gridLevels.forEach(level => {
+      gridSvg += `<polygon points="${polygonPoints(level)}" fill="none"
+                  stroke="#ffffff14" stroke-width="0.8"/>`;
+    });
+
+    let axesSvg = "";
+    for (let i = 0; i < n; i++) {
+      const angle = (2 * Math.PI / n) * i - Math.PI / 2;
+      const x = cx + maxRadius * Math.cos(angle);
+      const y = cy + maxRadius * Math.sin(angle);
+      axesSvg += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"
+                  stroke="#ffffff10" stroke-width="0.6"/>`;
+    }
+
+    const dataPoints = polygonPoints(percentages);
+
+    const svg = `
+      <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+        <defs>
+          <radialGradient id="radarBg" cx="50%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#242b52"/>
+            <stop offset="100%" stop-color="#050814"/>
+          </radialGradient>
+        </defs>
+        <rect x="0" y="0" width="${size}" height="${size}" fill="url(#radarBg)" rx="18"/>
+        <g>
+          <circle cx="${cx}" cy="${cy}" r="${maxRadius}" fill="#ffffff06"
+                  stroke="#ffffff15" stroke-width="1"/>
+          ${gridSvg}
+          ${axesSvg}
+        </g>
+        <polygon points="${dataPoints}"
+          fill="${colorFill}" stroke="${colorStroke}" stroke-width="2" />
+        <circle cx="${cx}" cy="${cy}" r="2" fill="#ffffffaa"/>
+        ${labelsSvg}
+      </svg>
+    `;
+    container.innerHTML = svg;
+  }
+
+  function updateLegends() {
+    const bartlePerc = computePercentages(scoresBartle, bartleTypes);
+    const hexadPerc = computePercentages(scoresHexad, hexadTypes);
+
+    bartleLegendEl.innerHTML = "";
+    bartleTypes.forEach((t, i) => {
+      const pill = document.createElement("span");
+      pill.className = "pill";
+      pill.textContent = `${t}: ${bartlePerc[i]}%`;
+      bartleLegendEl.appendChild(pill);
+    });
+
+    hexadLegendEl.innerHTML = "";
+    hexadTypes.forEach((t, i) => {
+      const pill = document.createElement("span");
+      pill.className = "pill";
+      pill.textContent = `${t}: ${hexadPerc[i]}%`;
+      hexadLegendEl.appendChild(pill);
+    });
+
+    drawRadar(bartleRadarEl, bartleTypes, bartlePerc, "#ffd86b", "rgba(255,216,107,0.35)");
+    drawRadar(hexadRadarEl, hexadTypes, hexadPerc, "#8f7bff", "rgba(143,123,255,0.35)");
+  }
+
+  function updateSummary() {
+    const bartlePerc = computePercentages(scoresBartle, bartleTypes);
+    const hexadPerc = computePercentages(scoresHexad, hexadTypes);
+
+    function topTwo(types, perc) {
+      const arr = types.map((t, i) => ({ type: t, value: perc[i] }));
+      arr.sort((a, b) => b.value - a.value);
+      return arr.slice(0, 2);
+    }
+
+    const topBartle = topTwo(bartleTypes, bartlePerc);
+    const topHexad = topTwo(hexadTypes, hexadPerc);
+
+    if (topBartle[0].value === 0 && topHexad[0].value === 0) {
+      summaryTextEl.textContent = "Responde el cuestionario para ver aquí tu arquetipo principal y secundario en Bartle y Hexad, junto con una interpretación en español.";
+      return;
+    }
+
+    const b1 = topBartle[0];
+    const b2 = topBartle[1];
+    const h1 = topHexad[0];
+    const h2 = topHexad[1];
+
+    summaryTextEl.innerHTML = `
+      <p><strong>Modelo Bartle:</strong> tu tendencia principal es <strong>${b1.type}</strong> (${b1.value}%), con un matiz secundario <strong>${b2.type}</strong> (${b2.value}%).</p>
+      <p>${bartleDescriptions[b1.type] || ""}</p>
+      <p>Tu matiz secundario (<strong>${b2.type}</strong>) indica que también te reconoces en este estilo: ${bartleDescriptions[b2.type] || ""}</p>
+      <hr style="border-color:#ffffff11; margin:8px 0;">
+      <p><strong>Modelo Hexad:</strong> destacas como <strong>${h1.type}</strong> (${h1.value}%), seguido de <strong>${h2.type}</strong> (${h2.value}%).</p>
+      <p>${hexadDescriptions[h1.type] || ""}</p>
+      <p>Tu tendencia secundaria <strong>${h2.type}</strong> añade matices importantes a tu perfil: ${hexadDescriptions[h2.type] || ""}</p>
+      <hr style="border-color:#ffffff11; margin:8px 0;">
+      <p>${reflectionText}</p>
+    `;
+  }
+
+  function showResults() {
+    computeScores();
+    updateLegends();
+    updateSummary();
+    progressBarEl.style.width = "100%";
+  }
+
+  function resetTest() {
+    currentIndex = 0;
+    answers = Array(questions.length).fill(null);
+    resetScores();
+    optionInputs.forEach(input => { input.checked = false; });
+    progressBarEl.style.width = "0%";
+    alertEl.style.display = "none";
+    summaryTextEl.textContent = "Completa el cuestionario para ver aquí tu arquetipo principal y secundario, junto a una descripción en español.";
+    drawRadar(bartleRadarEl, bartleTypes, [0, 0, 0, 0], "#444b70", "rgba(255,255,255,0.03)");
+    drawRadar(hexadRadarEl, hexadTypes, [0, 0, 0, 0, 0, 0], "#444b70", "rgba(255,255,255,0.03)");
+    bartleLegendEl.innerHTML = "";
+    hexadLegendEl.innerHTML = "";
+    loadQuestion(currentIndex);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // --- Listeners ---
+  btnNext.addEventListener("click", () => {
+    const value = getSelectedValue();
+    if (value === null) {
+      alertEl.style.display = "block";
+      return;
+    }
+    alertEl.style.display = "none";
+    answers[currentIndex] = value;
+
+    if (currentIndex < questions.length - 1) {
+      currentIndex++;
+      loadQuestion(currentIndex);
+    } else {
+      showResults();
+    }
+  });
+
+  btnBack.addEventListener("click", () => {
+    if (currentIndex > 0) {
+      const value = getSelectedValue();
+      if (value !== null) {
+        answers[currentIndex] = value;
+      }
+      currentIndex--;
+      loadQuestion(currentIndex);
+    }
+  });
+
+  optionInputs.forEach(input => {
+    input.addEventListener("change", () => {
+      alertEl.style.display = "none";
+    });
+  });
+
+  btnDownload.addEventListener("click", () => {
+    window.print();
+  });
+
+  btnReset.addEventListener("click", resetTest);
+
+  // --- Estado inicial ---
+  loadQuestion(currentIndex);
+  drawRadar(bartleRadarEl, bartleTypes, [0, 0, 0, 0], "#444b70", "rgba(255,255,255,0.03)");
+  drawRadar(hexadRadarEl, hexadTypes, [0, 0, 0, 0, 0, 0], "#444b70", "rgba(255,255,255,0.03)");
+</script>
+</body>
+</html>

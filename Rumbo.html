@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="rumbo-version" content="1.1-aula-20261019">
+  <meta name="theme-color" content="#6652d5">
+  <meta name="description" content="Rumbo: aprende a organizar tu dinero, entender el ahorro y descubrir las matemáticas detrás de las apuestas.">
+  <title>Rumbo · Tu dinero, tus decisiones</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%236652d5%22%2F%3E%3Cpath%20d%3D%22M18%2046V23h9v5c4-5%208-6%2014-5v9c-10-2-14%201-14%208v6z%22%20fill%3D%22%23fff%22%2F%3E%3Ccircle%20cx%3D%2246%22%20cy%3D%2243%22%20r%3D%225%22%20fill%3D%22%23d7f48a%22%2F%3E%3C%2Fsvg%3E%0A" type="image/svg+xml">
+  <style>
+:root{--bg:#f6f5f9;--paper:#fff;--ink:#272437;--muted:#716e80;--purple:#6652d5;--lavender:#eeebff;--lime:#d7f48a;--line:#e7e4ef;--coral:#dc765f;--mint:#b9e8d3;--radius:22px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:15px;line-height:1.55}button,input,select{font:inherit}button,a,input,select,summary{touch-action:manipulation}button,a{transition:background .15s,color .15s,transform .15s}button{cursor:pointer}a{color:var(--purple);text-underline-offset:4px}a:hover{color:#47359b}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--purple);outline-offset:4px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(36px,4.6vw,61px);line-height:1.05;letter-spacing:-2.6px;font-weight:780;margin:14px 0 20px}h1 span{color:var(--purple)}h2{font-size:21px;letter-spacing:-.6px;line-height:1.3;margin:6px 0 14px}h3{font-size:19px;margin:9px 0}p{margin-bottom:16px}small{display:block}.sidebar{position:fixed;inset:0 auto 0 0;width:260px;background:var(--paper);border-right:1px solid var(--line);padding:34px 24px;display:flex;flex-direction:column;z-index:5}.brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:var(--ink);font-size:31px;letter-spacing:-1px;line-height:1.1;font-weight:800}.brand-icon{background:var(--purple);border-radius:14px;color:#fff;width:48px;height:48px;display:grid;place-items:center;font-size:36px;letter-spacing:-2px}.brand-small{display:block;font-size:8px;letter-spacing:1.1px;margin-top:7px}.side-label,.eyebrow{font-size:10px;letter-spacing:1.6px;font-weight:750}.side-label{color:var(--muted);margin:57px 0 17px}.sidebar nav{display:grid;gap:10px}.sidebar nav a{display:flex;gap:12px;align-items:center;padding:15px 13px;border-radius:14px;text-decoration:none;color:var(--muted);font-weight:650}.sidebar nav a.active{background:var(--lavender);color:var(--purple)}.nav-symbol{font-size:12px;line-height:30px;text-align:center;border:1px solid currentColor;border-radius:9px;width:30px;height:30px;flex-shrink:0}.sidebar nav small{font-size:10px;font-weight:400;margin-top:3px}.arrow{margin-left:auto}.route-progress{margin-top:45px;background:var(--bg);padding:20px 16px;border-radius:17px}.route-progress .eyebrow{font-size:8px;letter-spacing:1px}.route-progress strong{display:block;font-size:16px;margin:12px 0}.route-progress p{font-size:11px;color:var(--muted);margin:12px 0 0}.side-bottom{margin-top:auto;padding-top:25px}.side-bottom>span{font-size:10px;display:block;color:var(--muted);margin-top:16px}.text-button{background:none;border:0;padding:0;color:var(--purple);font-size:inherit;text-align:left;text-decoration:underline;text-underline-offset:4px}.side-bottom button{font-size:12px;text-decoration:none}main{margin-left:260px;padding:0 46px 24px;max-width:1550px}.topbar{height:90px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);margin-bottom:36px;font-size:10px;font-weight:650;letter-spacing:1.1px;color:var(--muted)}.local-pill{background:var(--paper);border:1px solid var(--line);padding:8px 12px;border-radius:25px;font-size:10px;font-weight:400;letter-spacing:0;white-space:nowrap;display:flex;align-items:center;gap:7px}.local-pill i{height:6px;width:6px;border-radius:50%;background:#3c8861}.page-heading{display:flex;justify-content:space-between;align-items:center;gap:26px;margin-bottom:26px}.page-heading p{font-size:16px;color:var(--muted);max-width:560px;margin-bottom:0}.heading-sticker{width:168px;flex-shrink:0;min-height:154px;display:flex;flex-direction:column;justify-content:center;background:var(--lime);padding:20px 24px;border-radius:30px 30px 30px 3px;transform:rotate(6deg);font-size:12px;font-weight:600;letter-spacing:.5px;line-height:1.6;box-shadow:4px 6px 0 #e9e7ed}.heading-sticker strong{font-size:11px}.mint{background:var(--mint)}.coral{background:#f5b5a7}.notice{font-size:12px;background:var(--lavender);border:1px solid #ded7fb;border-radius:12px;padding:13px 17px;margin-bottom:26px}.coral-notice{background:#fff1ea;border-color:#f4d2c2}.section-line{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17px}.section-line h2{margin:0}.inline-label{display:flex;gap:12px;align-items:center;font-size:12px}.inline-label input{padding:7px 9px;max-width:165px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-bottom:23px}.stat{background:var(--paper);border:1px solid var(--line);border-radius:17px;padding:21px 23px}.stat>span{color:var(--muted);font-size:12px}.stat strong{display:block;font-size:clamp(22px,2.8vw,34px);letter-spacing:-1.2px;margin:10px 0 7px;overflow-wrap:anywhere}.stat small{font-size:10px;color:var(--muted)}.dark{background:var(--ink);color:white;border-color:var(--ink)}.dark>span,.dark small{color:#d2cedf}.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:23px}.budget-grid{grid-template-columns:1.12fr 1fr}.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:26px;min-width:0;margin-bottom:23px}.grid>.card{margin:0}.card p{color:var(--muted);font-size:13px}.card-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.card-heading h2{margin-bottom:0}.mini-badge{border:1px solid var(--line);border-radius:6px;font-size:9px;padding:6px 8px;white-space:nowrap;letter-spacing:.8px;color:var(--muted)}.allocation{margin-top:24px}.allocation label{display:flex;align-items:center;justify-content:space-between;font-size:13px}.allocation output{font-weight:700;color:var(--purple)}input,select{width:100%;border:1px solid #dedbe8;background:#fff;border-radius:9px;padding:10px 11px;color:var(--ink);min-height:42px;min-width:0}input[type=range]{padding:0;min-height:24px;accent-color:var(--purple);margin:8px 0 20px;border:0;box-shadow:none}.allocation-row{display:flex;justify-content:space-between;font-size:13px;border-top:1px solid var(--line);padding-top:16px}.stacked{display:flex;overflow:hidden;height:13px;border-radius:9px;background:var(--line);margin:18px 0 12px}.stacked>span{height:100%}.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:10px;color:var(--muted)}.legend span{display:flex;align-items:center;gap:6px}.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}.purple{background:var(--purple)}.gray{background:#8b879d}.green{background:#a8ce59}.coral-dot{background:var(--coral)}.feedback{background:var(--bg);border-radius:10px;padding:11px 14px;font-size:12px!important;margin:18px 0 0!important;color:var(--ink)!important}.goal-card{background:linear-gradient(140deg,#fff,#f5f2ff)}label{display:block;font-size:11px;font-weight:650;margin-bottom:6px}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:15px}.button{display:inline-flex;align-items:center;justify-content:center;background:var(--purple);color:#fff;border:1px solid var(--purple);padding:11px 16px;border-radius:9px;font-size:12px;font-weight:650;text-decoration:none;min-height:42px}.button:hover{background:#5140b7;color:#fff}.button.small{margin-top:14px;padding:8px 14px;font-size:11px;min-height:36px}.secondary{background:var(--lavender);color:var(--purple);border-color:#ded7fb}.danger{background:#fff1eb;color:#a13b30;border-color:#edbdaf}.goal-summary{display:flex;align-items:center;gap:15px;margin:24px 0 9px}.goal-summary strong{font-size:30px;letter-spacing:-1px;color:var(--purple)}.goal-summary span{font-size:11px;color:var(--muted)}progress{appearance:none;display:block;width:100%;border:0;height:8px;border-radius:9px;overflow:hidden;background:#dfdbef}progress::-webkit-progress-bar{background:#dfdbef}progress::-webkit-progress-value{background:var(--purple);border-radius:9px}progress::-moz-progress-bar{background:var(--purple)}.goal-card .muted{font-size:10px;margin:13px 0 0}.muted{color:var(--muted);font-size:12px}.entry-form{display:grid;grid-template-columns:.8fr .85fr 1fr 1.2fr 1fr auto;gap:10px;align-items:end;margin:24px 0}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th{font-weight:500;color:var(--muted);font-size:10px;text-align:left;padding:11px 8px;border-bottom:1px solid var(--line)}td{padding:13px 8px;border-bottom:1px solid var(--line);max-width:250px;overflow-wrap:anywhere}.align-right{text-align:right}.positive{color:#397756;font-weight:700}.negative{color:#a85044;font-weight:700}.icon-button{border:1px solid var(--line);background:transparent;border-radius:8px;min-height:34px;min-width:34px;font-size:18px;color:var(--muted)}.icon-button:hover{background:var(--lavender)}#spending-summary{margin-top:17px}.mission{display:flex;gap:23px;background:var(--lavender);border:1px solid #e0dbf4;padding:26px;border-radius:var(--radius);margin:24px 0 34px}.mission-number{background:var(--purple);color:white;flex-shrink:0;width:45px;height:45px;border-radius:14px;display:grid;place-items:center;font-size:18px;font-weight:750}.mission h2{margin-top:9px}.mission p{font-size:13px;color:#69617d}.choices{display:flex;gap:10px;flex-wrap:wrap}.choices button{font-size:12px;border:1px solid #d4cceb;border-radius:9px;background:white;color:var(--ink);padding:11px 14px;text-align:left}.choices button:hover{border-color:var(--purple)}.choices button.selected{border-color:var(--purple);background:var(--purple);color:white}.mission .mission-feedback{margin:14px 0 0;color:#514281}.concept-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:15px 0 35px;padding:23px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.concept-strip strong{font-size:15px}.concept-strip p{font-size:12px;color:var(--muted);margin:7px 0 0}.products{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:23px}.product{margin:0;padding:22px}.product details p{margin-top:14px}.product-tag{color:var(--purple);background:var(--lavender);border-radius:6px;padding:4px 8px;display:inline-block;font-size:10px;font-weight:650}.product .product-summary{min-height:45px}.product dl{font-size:12px;display:grid;gap:7px}.product dl div{display:grid;grid-template-columns:65px 1fr;gap:12px}.product dt{color:var(--muted)}.product dd{margin:0}summary{font-size:12px;color:var(--purple);cursor:pointer;font-weight:600}details{margin-top:15px}details p{font-size:12px;color:var(--muted);margin:15px 0 0}.saving-form{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:23px;align-items:end}.saving-form button{grid-column:1/-1;justify-self:start}.projection-grid{grid-template-columns:.8fr 1.3fr;align-items:center;margin:26px 0 0}.projection-total span{font-size:12px;color:var(--muted)}.projection-total strong{display:block;font-size:39px;letter-spacing:-1.5px;color:var(--purple);margin:8px 0 18px}.metrics{font-size:12px;display:grid;gap:9px}.metrics>div{display:flex;justify-content:space-between;gap:12px}.metrics dt{color:var(--muted)}.metrics dd{margin:0;font-weight:650}.chart{width:100%;min-height:240px}.chart svg{display:block;width:100%;height:auto}.chart text{font:10px Inter,"Segoe UI",sans-serif;fill:var(--muted)}.chart .axis{stroke:#e7e4ef;stroke-width:1}.chart polyline{fill:none;stroke-width:2.7;stroke-linejoin:round;stroke-linecap:round}.tinted{background:#f0edff}.questions{padding-left:20px;display:grid;gap:12px;font-size:13px;color:var(--muted)}.formula{font-size:15px;background:var(--bg);padding:18px;border-radius:12px;margin-bottom:18px;text-align:center}.formula strong{display:block;font-size:24px;color:var(--purple);margin-top:7px}.dark-card{background:var(--ink);color:white;border-color:var(--ink)}.dark-card p{color:#d2cedf}.dark-card h2{font-size:27px;margin:20px 0}.dark-card .eyebrow{color:var(--lime)}.risk-form{display:grid;grid-template-columns:1.65fr 1fr 1fr auto;gap:13px;align-items:end;margin:25px 0 13px}.risk-stats{margin:21px 0}.risk-stats .stat{background:var(--bg);padding:18px;border:0}.risk-stats .stat.dark{background:var(--ink)}.risk-stats .stat strong{font-size:28px}.wide-chart{min-height:230px}.probability-strip{display:flex;align-items:center;gap:20px;background:var(--bg);padding:17px;border-radius:12px}.probability-strip strong{font-size:30px;color:var(--purple)}.probability-strip span{font-size:12px;color:var(--muted)}footer{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:23px;color:var(--muted);font-size:10px;gap:20px}dialog{border:1px solid var(--line);border-radius:22px;padding:29px;width:min(580px,calc(100% - 30px));max-height:85vh;color:var(--ink)}dialog::backdrop{background:#27243788;backdrop-filter:blur(4px)}dialog p{font-size:13px;color:var(--muted)}.dialog-heading{display:flex;justify-content:space-between;align-items:center;gap:12px}.dialog-heading h2{margin-bottom:12px}.dialog-actions{display:grid;gap:12px;margin:22px 0}.dialog-actions label{margin:0}.sources{display:grid;gap:15px;padding-left:20px;font-size:13px}#toast{position:fixed;bottom:22px;left:calc(50% + 100px);transform:translateX(-50%);background:var(--ink);color:white;border-radius:10px;padding:12px 20px;font-size:12px;z-index:30;max-width:90%;opacity:0;pointer-events:none}#toast.visible{opacity:1}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip{position:fixed;top:-90px;left:12px;z-index:50;background:white;padding:12px}.skip:focus{top:12px}[hidden]{display:none!important}
+@media(min-width:1600px){main{margin-right:auto;margin-left:260px}}
+@media(max-width:1200px){main{padding:0 28px 24px}.sidebar{width:225px;padding:30px 19px}main{margin-left:225px}.entry-form{grid-template-columns:repeat(3,1fr)}.entry-form button{width:100%}.saving-form{grid-template-columns:repeat(3,1fr)}.risk-form{grid-template-columns:repeat(2,1fr)}.heading-sticker{width:145px;font-size:10px}.stats{gap:12px}.stat{padding:18px}.legend{gap:10px}}
+@media(max-width:920px){.sidebar{position:static;width:auto;padding:18px 24px 12px;border-right:0;border-bottom:1px solid var(--line)}.brand{font-size:25px}.brand-icon{width:39px;height:39px;font-size:29px}.brand-small{font-size:7px}.side-label,.route-progress,.side-bottom{display:none}.sidebar nav{display:flex;margin-top:19px;gap:8px}.sidebar nav a{flex:1;padding:10px;gap:9px;font-size:12px}.sidebar nav small{font-size:9px}.nav-symbol{width:25px;height:25px;line-height:25px;font-size:10px}.arrow{display:none}main{margin:0;padding:0 24px 24px;max-width:none}.topbar{height:66px;margin-bottom:27px}.page-heading{gap:16px}h1{font-size:46px}.projection-grid{grid-template-columns:1fr 1.2fr}#toast{left:50%}}
+@media(max-width:640px){main{padding:0 17px 24px}.sidebar{padding:16px 17px 10px}.sidebar nav a{justify-content:center;padding:11px 6px;font-size:11px;gap:6px}.sidebar nav small{display:none}.nav-symbol{border:0;width:auto;height:auto;line-height:1;font-size:10px}.topbar{font-size:8px;gap:10px}.local-pill{font-size:8px;padding:7px 8px}.page-heading{align-items:flex-start;margin-bottom:22px}.heading-sticker{width:100px;min-height:111px;padding:15px 12px;border-radius:20px 20px 20px 2px;font-size:8px;line-height:1.7;margin-top:15px}.heading-sticker strong{font-size:8px}h1{font-size:35px;letter-spacing:-1.5px}.eyebrow{font-size:8px;letter-spacing:1.2px}.page-heading p{font-size:13px}.notice{font-size:11px;padding:12px}.section-line{align-items:flex-start;flex-direction:column;gap:10px}.section-line h2{font-size:19px}.stats{grid-template-columns:1fr 1fr;gap:11px}.stats>.stat:last-child{grid-column:1/-1}.stat{padding:16px}.stat strong{font-size:27px;margin:6px 0}.stat>span{font-size:11px}.stat small{font-size:9px}.grid,.budget-grid,.projection-grid{grid-template-columns:1fr;gap:17px}.card{padding:20px;border-radius:18px;margin-bottom:18px}.card-heading{gap:8px}.card-heading h2{font-size:19px}.entry-form,.saving-form,.risk-form{grid-template-columns:1fr 1fr}.entry-form>div:nth-child(4){grid-column:1/-1}.risk-form>div:first-child{grid-column:1/-1}.risk-form button{grid-column:1/-1}.products{grid-template-columns:1fr;gap:14px}.product .product-summary{min-height:0}.concept-strip{grid-template-columns:1fr;gap:16px;padding:20px 0}.concept-strip p{margin-top:4px}.mission{padding:20px;gap:13px}.mission-number{width:33px;height:33px;border-radius:10px;font-size:13px}.choices{flex-direction:column}.choices button{width:100%}.mission h2{font-size:19px}.mission p{font-size:12px}.projection-total strong{font-size:33px}.saving-form button{width:100%;justify-self:stretch}.chart{min-height:0}.wide-chart{margin-top:25px}.risk-stats .stat strong{font-size:25px}.two{gap:10px}.mini-badge{font-size:8px;white-space:normal;text-align:center}footer{flex-direction:column;gap:12px}table{min-width:500px}.dialog-heading h2{font-size:20px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+.classroom-banner{display:flex;align-items:center;justify-content:space-between;gap:20px;background:#eaf3de;border:1px solid #d5e5bf;border-radius:16px;padding:18px 22px;margin:0 0 28px}.classroom-banner p{font-size:12px;margin:5px 0 0}.classroom-banner details{margin-top:9px}.classroom-banner ol{font-size:12px;margin:12px 0 0;padding-left:20px;display:grid;gap:7px}.classroom-banner>.button{flex-shrink:0}textarea{font:inherit;width:100%;min-width:0;resize:vertical;padding:10px 12px;border:1px solid #dedbe8;border-radius:9px;color:var(--ink);margin-bottom:12px}textarea:focus-visible{outline:3px solid var(--purple);outline-offset:3px}#feedback-form .two{margin:0 0 16px}#feedback-list article{border:1px solid var(--line);border-radius:10px;padding:13px;margin:14px 0}#feedback-list article p{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;margin:8px 0}#feedback-list article strong{font-size:12px}#download-feedback{margin-bottom:15px}@media(max-width:640px){.classroom-banner{flex-direction:column;align-items:stretch;padding:17px}.classroom-banner .button{align-self:flex-start}}
+
+</style>
+  
+  
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<aside class="sidebar">
+  <a href="#dinero" class="brand"><span class="brand-icon">r.</span><span>rumbo<span class="brand-small">TU DINERO, TUS DECISIONES</span></span></a>
+  <div class="side-label">TU ESPACIO FINANCIERO</div>
+  <nav aria-label="Secciones principales">
+    <a href="#dinero" data-route="dinero"><span class="nav-symbol">01</span><span>Mi dinero<small>Ordena y decide</small></span><span class="arrow">↗</span></a>
+    <a href="#futuro" data-route="futuro"><span class="nav-symbol">02</span><span>Mi futuro<small>Ahorra y comprende</small></span><span class="arrow">↗</span></a>
+    <a href="#riesgos" data-route="riesgos"><span class="nav-symbol">03</span><span>Sin trampas<small>Explora las probabilidades</small></span><span class="arrow">↗</span></a>
+  </nav>
+  <div class="route-progress"><span class="eyebrow">PEQUEÑOS PASOS, MÁS AUTONOMÍA</span><strong id="progress-label">0 de 3 misiones</strong><progress id="progress" max="3" value="0">0 de 3</progress><p>Tu progreso reconoce lo que aprendes, no cuánto dinero tienes.</p></div>
+  <div class="side-bottom"><button class="text-button" id="open-data">Mis datos y respaldo ↗</button><span>Una experiencia educativa de GamiAula</span></div>
+</aside>
+<main id="main" tabindex="-1">
+  <header class="topbar"><span id="breadcrumb">APRENDE HACIENDO / MI DINERO</span><span class="local-pill"><i></i> Guardado en este navegador</span></header>
+
+  <aside class="classroom-banner" aria-label="Prueba en aula"><div><span class="eyebrow">VERSIÓN DE AULA · AYÚDANOS A MEJORAR</span><p>Explora con datos ficticios y anota lo que mejorarías.</p><details><summary>Tu recorrido de prueba (15–20 min)</summary><ol><li>Mi dinero: agrega un gasto y cambia tu meta.</li><li>Mi futuro: compara dos productos y calcula un escenario con tasa cero.</li><li>Sin trampas: compara la ruleta con la moneda justa. ¿Qué cambia?</li><li>Anota una mejora concreta y descarga tus notas para entregarlas al docente.</li></ol></details></div><button class="button" id="open-feedback">Anotar una mejora ↗</button></aside>
+  <section class="page" id="page-dinero" aria-labelledby="title-dinero">
+    <div class="page-heading"><div><span class="eyebrow">01 / TOMA EL CONTROL</span><h1 id="title-dinero">Tu dinero.<br><span>Tu próximo paso.</span></h1><p>No necesitas tener mucho. Necesitas saber dónde va.</p></div><div class="heading-sticker">HAZ ESPACIO<br>PARA TU<br><strong>PRÓXIMA META ↗</strong></div></div>
+    <div class="notice" id="demo-notice">Estás explorando un mes de ejemplo con fichas en pesos chilenos. Puedes editarlo o <button class="text-button" id="start-empty">comenzar desde cero</button>.</div>
+    <div class="section-line"><h2>Mi mes en números</h2><label class="inline-label" for="period">Mes <input id="period" type="month"></label></div>
+    <div class="stats"><article class="stat"><span>Ingresos del mes</span><strong id="income">$0</strong><small>Todo lo que recibes</small></article><article class="stat"><span>Gastos del mes</span><strong id="expenses">$0</strong><small>Todo lo que usas</small></article><article class="stat dark"><span>Balance del mes</span><strong id="balance">$0</strong><small>Ingresos menos gastos; no es tu saldo bancario</small></article></div>
+    <div class="grid budget-grid"><article class="card"><div class="card-heading"><div><span class="eyebrow">DALE UN DESTINO</span><h2>Diseña tu reparto</h2></div><span class="mini-badge">PLAN</span></div><p>Distribuye los ingresos de este mes. Es un plan flexible, no una regla universal ni una transferencia de dinero.</p><div class="allocation"><label for="needs">Necesidades <output id="needs-out">50%</output></label><input id="needs" type="range" min="0" max="100" value="50"><label for="wants">Gustos <output id="wants-out">30%</output></label><input id="wants" type="range" min="0" max="100" value="30"><div class="allocation-row">Para ahorrar <strong id="save-percent">20%</strong></div></div><div id="allocation-bar" class="stacked" aria-hidden="true"></div><div id="allocation-amounts" class="legend"></div><p class="feedback" id="budget-feedback" aria-live="polite"></p></article>
+    <article class="card goal-card"><span class="eyebrow">ALGO QUE TE IMPORTA</span><h2>Mi próxima meta</h2><form id="goal-form"><label for="goal-name">¿Qué quieres lograr?</label><input id="goal-name" maxlength="60" value="Mi primera bicicleta" required><div class="two"><div><label for="goal-target">Meta total (CLP)</label><input id="goal-target" type="number" min="1" max="100000000" step="1" value="120000" required></div><div><label for="goal-saved">Ya reservado (CLP)</label><input id="goal-saved" type="number" min="0" max="100000000" step="1" value="20000" required></div></div><button class="button small" type="submit">Guardar mi meta</button></form><div class="goal-summary"><strong id="goal-percentage">17%</strong><span id="goal-status"></span></div><progress id="goal-progress" max="100" value="17">17%</progress><p class="muted">Registra aquí lo que efectivamente reservaste. No se descuenta automáticamente del balance mensual.</p></article></div>
+    <article class="card ledger"><div class="card-heading"><div><span class="eyebrow">LOS PEQUEÑOS GASTOS TAMBIÉN CUENTAN</span><h2>Mis movimientos</h2></div><span class="mini-badge" id="entry-count">0 movimientos</span></div><form id="entry-form" class="entry-form"><div><label for="entry-type">Tipo</label><select id="entry-type"><option value="expense">Gasto</option><option value="income">Ingreso</option></select></div><div><label for="entry-amount">Monto (CLP)</label><input id="entry-amount" type="number" min="1" max="10000000" step="1" placeholder="2500" required></div><div><label for="entry-category">Categoría</label><select id="entry-category"><option>Transporte</option><option>Comida</option><option>Ocio</option><option>Mesada</option><option>Trabajo ocasional</option><option>Otros</option></select></div><div><label for="entry-note">Descripción</label><input id="entry-note" maxlength="80" placeholder="Ej. colación" required></div><div><label for="entry-date">Fecha</label><input id="entry-date" type="date" required></div><button class="button" type="submit">Agregar ↗</button></form><div class="table-wrap"><table><caption class="sr-only">Movimientos del mes seleccionado</caption><thead><tr><th>Movimiento</th><th>Categoría</th><th>Fecha</th><th class="align-right">Monto</th><th><span class="sr-only">Acciones</span></th></tr></thead><tbody id="entries"></tbody></table></div><div id="spending-summary" class="muted"></div></article>
+    <article class="mission"><span class="mission-number">01</span><div><span class="eyebrow">MISIÓN / UNA DECISIÓN CON SENTIDO</span><h2>Antes de comprar, haz una pausa.</h2><p>Una suscripción cuesta $3.000 al mes. En un año son $36.000. ¿Qué elegirías si estás ahorrando para algo importante?</p><div class="choices" data-mission="budget"><button data-answer="compare">Comparar el costo anual y ajustar mi plan</button><button data-answer="ignore">Mirar solo el precio de este mes</button></div><p class="mission-feedback" aria-live="polite"></p></div></article>
+  </section>
+  <section class="page" id="page-futuro" hidden aria-labelledby="title-futuro">
+    <div class="page-heading"><div><span class="eyebrow">02 / PIENSA UN POCO MÁS ALLÁ</span><h1 id="title-futuro">Tu yo del futuro<br><span>te lo va a agradecer.</span></h1><p>Comprende las opciones antes de elegir dónde guardar tu dinero.</p></div><div class="heading-sticker mint">TIEMPO<br>+ CONSTANCIA<br><strong>= POSIBILIDADES</strong></div></div>
+    <div class="concept-strip"><div><strong>Ahorro</strong><p>Reservar parte del dinero para una meta o un imprevisto.</p></div><div><strong>Inversión</strong><p>Usar dinero en un instrumento que puede generar un retorno y también pérdidas.</p></div><div><strong>Liquidez</strong><p>Qué tan fácil y rápido puedes recuperar tu dinero.</p></div></div>
+    <div class="section-line"><h2>No todas las opciones hacen lo mismo</h2><span class="muted">Abre una ficha para conocerla</span></div>
+    <div class="products" id="products"></div>
+    <article class="card"><div class="card-heading"><div><span class="eyebrow">LABORATORIO DE AHORRO</span><h2>Lo pequeño puede sumar</h2></div><span class="mini-badge">SIMULADOR</span></div><p>Prueba una tasa hipotética, incluso negativa. No representa una oferta ni garantiza resultados. Los aportes se realizan al final de cada mes.</p><form id="saving-form" class="saving-form"><div><label for="initial">Monto inicial (CLP)</label><input id="initial" type="number" min="0" max="100000000" value="20000" step="1" required></div><div><label for="monthly">Aporte mensual (CLP)</label><input id="monthly" type="number" min="0" max="10000000" value="10000" step="1" required></div><div><label for="months">Plazo (meses)</label><input id="months" type="number" min="1" max="120" value="12" step="1" required></div><div><label for="rate">Tasa anual efectiva (%)</label><input id="rate" type="number" min="-50" max="50" value="4" step="0.1" required></div><div><label for="inflation">Inflación anual supuesta (%)</label><input id="inflation" type="number" min="-10" max="50" value="3" step="0.1" required></div><button class="button" type="submit">Calcular mi escenario ↗</button></form><div class="grid projection-grid"><div><div class="projection-total"><span>Total nominal al final</span><strong id="projection-total"></strong></div><dl class="metrics"><div><dt>Dinero aportado</dt><dd id="contributed"></dd></div><div><dt>Interés o variación simulada</dt><dd id="yield"></dd></div><div><dt>Valor en pesos de hoy</dt><dd id="real"></dd></div></dl><p class="muted">El valor real ajusta el total por la inflación supuesta. Este modelo omite impuestos, comisiones y variaciones de tasa.</p></div><div><div id="saving-chart" class="chart"></div><div class="legend"><span><i class="dot purple"></i> Total nominal</span><span><i class="dot gray"></i> Aportes</span></div></div></div></article>
+    <div class="grid"><article class="card tinted"><span class="eyebrow">UNA PROMESA QUE MERECE PREGUNTAS</span><h2>“Duplica tu dinero sin riesgo”.</h2><p>Una rentabilidad muy alta, garantizada y urgente es una señal de alerta. Verifica la institución, entiende los costos y conversa con un adulto de confianza antes de entregar dinero o datos.</p><a href="https://www.cmfchile.cl/educa/621/w3-article-27432.html" target="_blank" rel="noopener noreferrer">Explorar CMF Educa ↗</a></article><article class="card"><span class="eyebrow">CUATRO PREGUNTAS CLAVE</span><h2>Antes de elegir un producto</h2><ol class="questions"><li>¿Para qué necesito el dinero y en qué fecha?</li><li>¿Cuánto podría perder y cómo me afectaría?</li><li>¿Cuándo puedo retirarlo y cuánto cuesta?</li><li>¿Quién lo ofrece y dónde verifico sus condiciones?</li></ol><p class="muted">El acceso de menores y los requisitos de representación dependen del producto y la institución. Esta app no abre cuentas ni realiza inversiones.</p></article></div>
+    <article class="mission"><span class="mission-number">02</span><div><span class="eyebrow">MISIÓN / EL TIEMPO IMPORTA</span><h2>Necesitas tu dinero en dos semanas.</h2><p>Estás juntando dinero para una salida con tu curso. ¿Qué revisarías primero?</p><div class="choices" data-mission="saving"><button data-answer="liquidity">La disponibilidad del dinero y el riesgo de pérdida</button><button data-answer="return">Solo la opción que promete ganar más</button></div><p class="mission-feedback" aria-live="polite"></p></div></article>
+  </section>
+  <section class="page" id="page-riesgos" hidden aria-labelledby="title-riesgos">
+    <div class="page-heading"><div><span class="eyebrow">03 / MIRA DETRÁS DE LA PROMESA</span><h1 id="title-riesgos">La suerte no es<br><span>un plan financiero.</span></h1><p>Descubre por qué ganar una vez no cambia las reglas del juego.</p></div><div class="heading-sticker coral">PREGUNTA<br>POR LOS NÚMEROS.<br><strong>NO POR LA RACHA.</strong></div></div>
+    <div class="notice coral-notice">Laboratorio matemático con fichas ficticias. Aquí no se apuesta, no se compra y no hay premios por ganar.</div>
+    <div class="grid"><article class="card"><span class="eyebrow">EL DETALLE QUE CAMBIA TODO</span><h2>¿Qué es la ventaja de la casa?</h2><p>Es la parte de lo apostado que el modelo deja, en promedio, al operador. En una ruleta europea idealizada, apostar a un color acierta 18 de 37 veces: el cero hace la diferencia.</p><div class="formula">18/37 × (+1) + 19/37 × (−1)<strong>= −1/37 ≈ −2,70%</strong></div><p>Puedes ganar una sesión. Al repetir apuestas con estas reglas, el resultado esperado es negativo. El retorno promedio no describe lo que recibirá cada persona.</p></article><article class="card dark-card"><span class="eyebrow">UNA GANANCIA AISLADA NO ES UNA ESTRATEGIA</span><h2>Observa muchas sesiones,<br>no solo una historia.</h2><p>Las redes suelen mostrar a quien ganó. No muestran necesariamente a todas las personas que perdieron ni cuánto apostaron antes.</p><p>En el laboratorio compararás una sesión, el promedio de 300 sesiones y el resultado esperado según las reglas.</p></article></div>
+    <article class="card"><div class="card-heading"><div><span class="eyebrow">LABORATORIO DE PROBABILIDADES</span><h2>Lo que una racha no te cuenta</h2></div><span class="mini-badge">300 SESIONES</span></div><form id="risk-form" class="risk-form"><div><label for="risk-model">Modelo matemático</label><select id="risk-model"><option value="roulette">Ruleta europea: color (18/37)</option><option value="coin">Moneda: pago total de 1,9×</option><option value="fair">Moneda justa: control sin ventaja</option></select></div><div><label for="risk-stake">Fichas por ronda</label><input id="risk-stake" type="number" value="100" min="1" max="100000" step="1" required></div><div><label for="risk-rounds">Rondas por sesión</label><select id="risk-rounds"><option value="10">10</option><option value="100" selected>100</option><option value="500">500</option><option value="1000">1.000</option></select></div><button class="button" type="submit">Analizar 300 sesiones ↗</button></form><p class="muted" id="model-description"></p><div class="stats risk-stats"><article class="stat"><span>Ventaja teórica de la casa</span><strong id="house-edge"></strong><small>Por cada ficha apostada</small></article><article class="stat"><span>Resultado esperado por sesión</span><strong id="expected-net"></strong><small>Según probabilidades y pagos</small></article><article class="stat dark"><span>Promedio observado por sesión</span><strong id="observed-net"></strong><small>Varía en cada experimento</small></article></div><div id="risk-chart" class="chart wide-chart"></div><div class="legend"><span><i class="dot gray"></i> Una sesión</span><span><i class="dot purple"></i> Promedio de 300 sesiones</span><span><i class="dot coral-dot"></i> Resultado esperado</span></div><div id="session-bar" class="stacked" aria-hidden="true"></div><p id="session-summary" class="feedback" aria-live="polite"></p><details><summary>Cómo interpretar el experimento</summary><p>Cada ronda es independiente y usa el mismo tamaño de apuesta. Si se acierta, el pago total incluye la ficha inicial; si se pierde, se pierde esa ficha. En el control justo no hay ventaja de la casa, pero sigue existiendo variación y riesgo de pérdidas.</p><p>Completamos todas las rondas sin límite de capital para estudiar el resultado neto acumulado. Los valores negativos son pérdidas acumuladas, no un saldo real. No modelamos endeudamiento ni abandono por falta de fondos.</p><p>La ventaja indica el ingreso bruto esperado por lo apostado, antes de gastos del operador. Ni una sesión ni 300 sesiones garantizan un resultado concreto.</p></details></article>
+    <div class="grid"><article class="card"><span class="eyebrow">LA FALACIA DEL JUGADOR</span><h2>“Ya me toca ganar”.</h2><p>En un evento independiente, los resultados anteriores no cambian la probabilidad del siguiente. Después de cinco pérdidas en el modelo de ruleta, acertar a un color sigue teniendo probabilidad 18/37.</p><div class="probability-strip"><strong>48,65%</strong><span>antes de la racha<br>y después de la racha</span></div></article><article class="card tinted"><span class="eyebrow">SEÑALES PARA HACER UNA PAUSA</span><h2>Recuperar lo perdido puede costar más.</h2><p>Perseguir pérdidas, ocultar gastos, pedir dinero para apostar o dejar actividades importantes son razones para buscar apoyo.</p><p>Habla con un adulto de confianza, orientación de tu colegio o un profesional de salud. Pedir ayuda no requiere haber perdido una cantidad determinada.</p></article></div>
+    <article class="mission"><span class="mission-number">03</span><div><span class="eyebrow">MISIÓN / DESARMA LA TRAMPA</span><h2>Perdiste cinco veces seguidas.</h2><p>En este modelo las rondas son independientes. ¿Qué pasa con la siguiente?</p><div class="choices" data-mission="risk"><button data-answer="same">La probabilidad sigue igual</button><button data-answer="due">Es más probable ganar porque “ya toca”</button></div><p class="mission-feedback" aria-live="polite"></p></div></article>
+  </section>
+  <footer><span>Rumbo · Aprende a decidir con información.</span><button class="text-button" id="open-sources">Fuentes y modelo educativo ↗</button></footer>
+</main>
+<dialog id="data-dialog"><div class="dialog-heading"><h2>Tu espacio, tus datos</h2><button class="icon-button" data-close="data-dialog" aria-label="Cerrar">×</button></div><p>No necesitas registrarte. Tus movimientos, meta y misiones se guardan en este navegador. No llegan a GitHub ni a GamiAula.</p><p>En un dispositivo compartido, usa ejemplos ficticios. Puedes descargar un respaldo y restaurarlo en otro navegador.</p><div class="dialog-actions"><button class="button" id="export-data">Descargar respaldo JSON</button><label class="button secondary" for="import-data">Restaurar respaldo</label><input id="import-data" type="file" accept=".json,application/json" class="sr-only"><button class="button secondary" id="load-demo">Cargar ejemplo (reemplaza datos)</button><button class="button danger" id="clear-data">Borrar mis datos de este navegador</button></div><p id="data-feedback" aria-live="polite"></p><p class="muted">Si borras los datos del navegador o usas modo privado, el guardado puede desaparecer. La app funciona sin conexiones externas; solo los enlaces a fuentes abren otros sitios.</p></dialog>
+<dialog id="sources-dialog"><div class="dialog-heading"><h2>Aprender con respaldo</h2><button class="icon-button" data-close="sources-dialog" aria-label="Cerrar">×</button></div><p>Contenido educativo para adolescentes, con montos de ejemplo en CLP. Tasas hipotéticas, sin recomendaciones de compra ni contratación.</p><ul class="sources"><li><a href="https://www.cmfchile.cl/educa/621/w3-article-27432.html" target="_blank" rel="noopener noreferrer">CMF Educa: instrumentos de ahorro ↗</a></li><li><a href="https://www.cmfchile.cl/educa/621/w3-propertyvalue-988.html" target="_blank" rel="noopener noreferrer">CMF Educa: fondos mutuos y riesgos ↗</a></li><li><a href="https://www.cmfchile.cl/educa/621/w3-article-518.html" target="_blank" rel="noopener noreferrer">CMF Educa: instrumentos del mercado de valores ↗</a></li><li><a href="https://www.gamblingcommission.gov.uk/public-and-players/guide/return-to-player-how-much-gaming-machines-payout" target="_blank" rel="noopener noreferrer">Gambling Commission: retorno promedio e independencia ↗</a></li></ul><p class="muted">Fuentes revisadas el 13 de octubre de 2026. El modelo de ruleta y la moneda con pago reducido son ejemplos matemáticos simplificados. Los términos reales dependen de cada producto.</p></dialog>
+<dialog id="feedback-dialog" aria-labelledby="feedback-title"><div class="dialog-heading"><h2 id="feedback-title">Tus ideas mejoran Rumbo</h2><button class="icon-button" data-close="feedback-dialog" aria-label="Cerrar notas">×</button></div><p>Usa ejemplos ficticios. No incluyas tu nombre, datos de tu familia ni información financiera real. Las notas quedan en este navegador: descárgalas y compártelas con tu docente.</p><form id="feedback-form"><div class="two"><div><label for="feedback-section">Sección</label><select id="feedback-section"><option value="dinero">Mi dinero</option><option value="futuro">Mi futuro</option><option value="riesgos">Sin trampas</option><option value="general">Toda la app</option></select></div><div><label for="feedback-kind">¿Qué encontraste?</label><select id="feedback-kind"><option>Idea de mejora</option><option>Algo no funciona</option><option>Algo no se entiende</option><option>Algo que me gustó</option></select></div></div><label for="feedback-task">¿Qué intentabas hacer?</label><textarea id="feedback-task" rows="2" maxlength="500" required placeholder="Ej. comparar dos escenarios de ahorro"></textarea><label for="feedback-result">¿Qué ocurrió o qué mejorarías?</label><textarea id="feedback-result" rows="3" maxlength="700" required></textarea><label for="feedback-expect">¿Qué esperabas o qué propones? (opcional)</label><textarea id="feedback-expect" rows="2" maxlength="700"></textarea><button class="button" type="submit">Guardar nota</button></form><p id="feedback-status" role="status"></p><div id="feedback-list"></div><button class="button secondary" id="download-feedback">Descargar mis notas (.txt)</button><p class="muted">Descargar prepara un archivo; no lo envía automáticamente al docente. Estas notas se guardan y descargan por separado del respaldo de tus movimientos.</p></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript><p>Activa JavaScript para usar los simuladores y guardar movimientos.</p></noscript>
+<script>
+(function (root) {
+  'use strict';
+  function number(value, min, max) {
+    const n = Number(value);
+    if (!Number.isFinite(n) || n < min || n > max) throw new RangeError('Valor fuera de rango');
+    return n;
+  }
+  function totals(entries) {
+    const income = entries.filter(x => x.type === 'income').reduce((s, x) => s + x.amount, 0);
+    const expenses = entries.filter(x => x.type === 'expense').reduce((s, x) => s + x.amount, 0);
+    return { income, expenses, balance: income - expenses };
+  }
+  // Tasa anual efectiva; capitalización mensual equivalente; aporte al fin del mes.
+  function project(initial, contribution, months, annualRate, inflation) {
+    number(initial, 0, 1e8); number(contribution, 0, 1e7); number(months, 1, 120);
+    if (!Number.isInteger(months)) throw new RangeError('Usa un plazo entero');
+    number(annualRate, -50, 50); number(inflation, -10, 50);
+    const rate = Math.pow(1 + annualRate / 100, 1 / 12) - 1;
+    const points = [{ month: 0, balance: initial, contributed: initial }];
+    let balance = initial;
+    for (let i = 1; i <= months; i++) {
+      balance = balance * (1 + rate) + contribution;
+      points.push({ month: i, balance, contributed: initial + contribution * i });
+    }
+    const contributed = initial + contribution * months;
+    return { balance, contributed, yield: balance - contributed,
+      real: balance / Math.pow(1 + inflation / 100, months / 12), points };
+  }
+  const models = {
+    roulette: { name: 'Modelo de ruleta europea', p: 18 / 37, payout: 2 },
+    coin: { name: 'Moneda con pago reducido', p: .5, payout: 1.9 },
+    fair: { name: 'Moneda justa (control)', p: .5, payout: 2 }
+  };
+  function expected(model, stake, rounds) {
+    return stake * rounds * (model.p * model.payout - 1);
+  }
+  // Todas las rondas se realizan con fichas de laboratorio, sin límite de capital.
+  // Se mide el resultado neto acumulado, no un saldo bancario.
+  function experiment(key, stake, rounds, sessions = 300, random = Math.random) {
+    if (!models[key]) throw new RangeError('Modelo desconocido');
+    number(stake, 1, 100000); number(rounds, 1, 1000); number(sessions, 1, 1000);
+    if (!Number.isInteger(rounds) || !Number.isInteger(sessions)) throw new RangeError('Usa enteros');
+    const model = models[key];
+    const sums = Array(rounds + 1).fill(0), sample = [0], ends = [];
+    for (let s = 0; s < sessions; s++) {
+      let net = 0;
+      for (let r = 1; r <= rounds; r++) {
+        net += (random() < model.p ? model.payout - 1 : -1) * stake;
+        sums[r] += net;
+        if (s === 0) sample.push(net);
+      }
+      ends.push(net);
+    }
+    const mean = sums.map(x => x / sessions);
+    return { sample, mean, ends, average: mean[rounds],
+      theory: expected(model, stake, rounds),
+      winners: ends.filter(x => x > 1e-7).length,
+      tied: ends.filter(x => Math.abs(x) <= 1e-7).length,
+      losers: ends.filter(x => x < -1e-7).length,
+      edge: 1 - model.p * model.payout,
+      totalStaked: sessions * rounds * stake };
+  }
+  function validateBackup(data) {
+    if (!data || data.version !== 1 || !Array.isArray(data.entries) || data.entries.length > 5000) throw Error('Respaldo no compatible');
+    const entries = data.entries.map(x => {
+      if (!x || !['income','expense'].includes(x.type) || !['Mesada','Trabajo ocasional','Transporte','Comida','Ocio','Otros'].includes(x.category)) throw Error('Movimiento inválido');
+      if (typeof x.note !== 'string' || x.note.length > 80 || typeof x.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(x.date)) throw Error('Movimiento inválido');
+      const d = new Date(x.date + 'T12:00:00');
+      if (isNaN(d) || d.toISOString().slice(0,10) !== x.date) throw Error('Fecha inválida');
+      number(x.amount, 1, 1e7);
+      if (!Number.isInteger(x.amount)) throw Error('Monto inválido');
+      return { id: String(x.id).slice(0,80), date: x.date, note: x.note, category: x.category, type: x.type, amount: x.amount };
+    });
+    const goal = data.goal;
+    if (!goal || typeof goal.name !== 'string' || goal.name.length > 60) throw Error('Meta inválida');
+    if (typeof goal.target !== 'number' || typeof goal.saved !== 'number') throw Error('Monto de meta inválido');
+    number(goal.target, 1, 1e8); number(goal.saved, 0, 1e8);
+    const completed = Array.isArray(data.completed) ? [...new Set(data.completed.filter(x => ['budget','saving','risk'].includes(x)))] : [];
+    return { version: 1, entries, goal: { name: goal.name, target: goal.target, saved: goal.saved }, completed, demo: data.demo === true };
+  }
+  const api = { totals, project, models, expected, experiment, validateBackup };
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  root.RumboFinance = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(() => {
+  'use strict';
+  const F = window.RumboFinance, $ = id => document.getElementById(id);
+  const KEY = 'rumbo.finanzas.v1';
+  const money = value => new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(value);
+  const count = value => new Intl.NumberFormat('es-CL', { maximumFractionDigits: 1 }).format(value);
+  const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  function localDate() { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+  const today = localDate(), month = today.slice(0,7);
+  const empty = () => ({ version: 1, entries: [], goal: { name: 'Mi próxima meta', target: 100000, saved: 0 }, completed: [], demo: false });
+  function demo() {
+    return { version: 1, demo: true, completed: [], goal: { name: 'Mi primera bicicleta', target: 120000, saved: 20000 }, entries: [
+      { id:'demo1',type:'income',amount:50000,category:'Mesada',note:'Mesada de ejemplo',date:month+'-01' },
+      { id:'demo2',type:'income',amount:15000,category:'Trabajo ocasional',note:'Ayuda en un proyecto',date:month+'-02' },
+      { id:'demo3',type:'expense',amount:8000,category:'Transporte',note:'Traslados de la semana',date:month+'-03' },
+      { id:'demo4',type:'expense',amount:4500,category:'Comida',note:'Colaciones',date:month+'-04' },
+      { id:'demo5',type:'expense',amount:6000,category:'Ocio',note:'Salida con amigos',date:month+'-05' }
+    ] };
+  }
+  let state, storageOK = true, startupMessage = '';
+  try { const raw = localStorage.getItem(KEY); state = raw ? F.validateBackup(JSON.parse(raw)) : demo(); }
+  catch { state = empty(); startupMessage = 'No pudimos recuperar el guardado. Puedes restaurar un respaldo.'; }
+  function persist() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); storageOK = true; }
+    catch { storageOK = false; }
+    document.querySelector('.local-pill').innerHTML = storageOK ? '<i></i> Guardado en este navegador' : 'Sin guardado: descarga un respaldo';
+  }
+  let toastTimer;
+  function toast(message) { $('toast').textContent = message; $('toast').classList.add('visible'); clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').classList.remove('visible'), 4500); }
+  function save(message) { persist(); toast(storageOK ? message : 'El navegador no permite guardar. Descarga un respaldo.'); }
+  function selectedEntries() { return state.entries.filter(x => x.date.slice(0,7) === $('period').value); }
+  function allocation() {
+    let needs = +$('needs').value, wants = +$('wants').value;
+    if (needs + wants > 100) { wants = 100 - needs; $('wants').value = wants; }
+    const saving = 100 - needs - wants, income = F.totals(selectedEntries()).income;
+    $('needs-out').textContent = needs+'%'; $('wants-out').textContent = wants+'%'; $('save-percent').textContent = saving+'%';
+    $('allocation-bar').innerHTML = `<span class="purple" style="width:${needs}%"></span><span class="gray" style="width:${wants}%"></span><span class="green" style="width:${saving}%"></span>`;
+    $('allocation-amounts').innerHTML = `<span><i class="dot purple"></i> Necesidades ${money(income*needs/100)}</span><span><i class="dot gray"></i> Gustos ${money(income*wants/100)}</span><span><i class="dot green"></i> Ahorro ${money(income*saving/100)}</span>`;
+    const gap = Math.max(0,state.goal.target-state.goal.saved), monthly = income*saving/100;
+    $('budget-feedback').textContent = !income ? 'Agrega ingresos para calcular los montos de tu plan.' : gap === 0 ? 'Tu meta ya está cubierta. Puedes elegir tu siguiente paso.' : monthly > 0 ? `Si reservas ${money(monthly)} cada mes, cubrirías lo que falta en unos ${Math.ceil(gap/monthly)} meses, sin considerar intereses. Es una proyección, no ahorro registrado.` : 'Tu plan aún no reserva dinero para la meta. Puedes ajustar el reparto según tu realidad.';
+  }
+  function renderGoal() {
+    $('goal-name').value = state.goal.name; $('goal-target').value = state.goal.target; $('goal-saved').value = state.goal.saved;
+    const pct = Math.min(100,100*state.goal.saved/state.goal.target);
+    $('goal-percentage').textContent = Math.floor(pct)+'%'; $('goal-progress').value = pct;
+    $('goal-progress').textContent = Math.floor(pct)+'%';
+    $('goal-status').textContent = `${money(state.goal.saved)} reservados · ${money(Math.max(0,state.goal.target-state.goal.saved))} por reunir`;
+  }
+  function renderBudget() {
+    $('demo-notice').hidden = !state.demo;
+    const list = selectedEntries(), totals = F.totals(list);
+    $('income').textContent = money(totals.income); $('expenses').textContent = money(totals.expenses); $('balance').textContent = money(totals.balance);
+    $('entry-count').textContent = list.length+' movimientos';
+    $('entries').innerHTML = list.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x => `<tr><td>${escape(x.note)}</td><td>${escape(x.category)}</td><td>${x.date.split('-').reverse().join('/')}</td><td class="align-right ${x.type==='income'?'positive':'negative'}">${x.type==='income'?'+':'−'}${money(x.amount)}</td><td><button class="icon-button" data-delete="${escape(x.id)}" aria-label="Eliminar ${escape(x.note)}">×</button></td></tr>`).join('') || '<tr><td colspan="5">No hay movimientos en este mes. Agrega el primero para comenzar.</td></tr>';
+    const groups = {}; list.filter(x=>x.type==='expense').forEach(x=>groups[x.category]=(groups[x.category]||0)+x.amount);
+    const highest = Object.entries(groups).sort((a,b)=>b[1]-a[1])[0];
+    $('spending-summary').textContent = highest ? `Tu mayor categoría de gasto es ${highest[0]}: ${money(highest[1])}. ${totals.balance<0?'En este mes gastaste más de lo que registraste como ingresos. Revisa el plan y tus fuentes de dinero.':'Revisa si coincide con lo que es importante para ti.'}` : 'Cuando registres gastos, podrás ver dónde estás usando más dinero.';
+    renderGoal(); allocation();
+  }
+  const products = [
+    { name:'Cuenta de ahorro',tag:'Reservar y organizar',summary:'Guarda dinero bajo condiciones definidas por la institución.',risk:'Depende de la entidad y las condiciones; considera inflación y costos.',time:'Revisa límites de retiro, reajustes y condiciones de interés.',detail:'Una cuenta de ahorro puede pagar intereses o reajustes según su contrato. Antes de elegirla, verifica cargos, saldo mínimo, reglas de retiro y requisitos para menores. Tener dinero guardado no asegura que conserve su poder de compra.' },
+    { name:'Depósito a plazo',tag:'Un plazo acordado',summary:'Entregas dinero por un período y una tasa pactados.',risk:'Hay riesgo de la entidad, inflación y condiciones contractuales.',time:'Planifica mantener el dinero hasta el vencimiento.',detail:'En un depósito a plazo, la institución recibe dinero por un período determinado y pacta intereses o reajustes. La disponibilidad antes del vencimiento depende del contrato. Compara tasas usando el mismo plazo, moneda y condiciones; una tasa mensual y una anual no se comparan directamente.' },
+    { name:'Fondo mutuo',tag:'Una cartera compartida',summary:'Tus aportes se invierten junto a los de otras personas.',risk:'Puede ganar o perder valor; depende de los activos del fondo.',time:'Revisa plazo de rescate, comisiones y horizonte recomendado.',detail:'Un fondo invierte en distintos activos según su política. Diversificar puede repartir riesgos, pero no los elimina. El valor de la cuota cambia. Revisa el reglamento, los costos y el riesgo; la rentabilidad pasada no garantiza la futura.' },
+    { name:'Acciones',tag:'Participar en una empresa',summary:'Compras una parte del patrimonio de una empresa.',risk:'El precio puede caer y no hay ganancias garantizadas.',time:'Vender depende del mercado y no asegura recuperar lo aportado.',detail:'Los retornos pueden venir de dividendos y variaciones del precio. Una empresa puede no repartir dividendos y una acción puede perder mucho valor. Concentrar todo en una sola empresa aumenta la exposición. Se estudian aquí para comprenderlas, no como recomendación de compra.' }
+  ];
+  $('products').innerHTML = products.map(x=>`<article class="card product"><span class="product-tag">${x.tag}</span><h3>${x.name}</h3><p class="product-summary">${x.summary}</p><dl><div><dt>Riesgo</dt><dd>${x.risk}</dd></div><div><dt>Disponibilidad</dt><dd>${x.time}</dd></div></dl><details><summary>Entender este producto</summary><p>${x.detail}</p></details></article>`).join('');
+  function chart(target, series, monthsLabel, valueFormatter) {
+    const w=720,h=270,left=72,right=22,top=22,bottom=38;
+    const values=series.flatMap(s=>s.values), min=Math.min(0,...values), max=Math.max(0,...values);
+    const span=max-min||1, lower=min-span*.08, upper=max+span*.08;
+    const x=(i,n)=>left+(w-left-right)*i/Math.max(1,n-1), y=v=>top+(h-top-bottom)*(upper-v)/(upper-lower);
+    let svg=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${escape(monthsLabel)}"><title>${escape(monthsLabel)}</title>`;
+    for(let i=0;i<5;i++){const v=lower+(upper-lower)*i/4;svg+=`<line class="axis" x1="${left}" x2="${w-right}" y1="${y(v)}" y2="${y(v)}"/><text x="${left-8}" y="${y(v)+4}" text-anchor="end">${escape(valueFormatter(v))}</text>`;}
+    svg+=`<line x1="${left}" x2="${w-right}" y1="${y(0)}" y2="${y(0)}" stroke="#b9b4cc" stroke-dasharray="4 4"/>`;
+    series.forEach(s=>{
+      const stride=Math.max(1,Math.floor(s.values.length/150));
+      const pts=s.values.map((v,i)=>i%stride===0||i===s.values.length-1?`${x(i,s.values.length).toFixed(2)},${y(v).toFixed(2)}`:null).filter(Boolean).join(' ');
+      svg+=`<polyline points="${pts}" stroke="${s.color}" ${s.dashed?'stroke-dasharray="6 5"':''}><title>${escape(s.name)}</title></polyline>`;
+    });
+    const n=series[0].values.length-1;
+    [0,Math.round(n/2),n].forEach(i=>{svg+=`<text x="${x(i,n+1)}" y="${h-10}" text-anchor="middle">${i}</text>`;});
+    svg+='</svg>';
+    $(target).innerHTML=svg;
+  }
+  function compactMoney(v) { return Math.abs(v)>=1000000?count(v/1000000)+' M':Math.abs(v)>=1000?count(v/1000)+' mil':count(v); }
+  function renderProjection() {
+    const result=F.project(+$('initial').value,+$('monthly').value,+$('months').value,+$('rate').value,+$('inflation').value);
+    $('projection-total').textContent=money(result.balance);$('contributed').textContent=money(result.contributed);$('yield').textContent=money(result.yield);$('real').textContent=money(result.real);
+    chart('saving-chart',[{name:'Total nominal',values:result.points.map(x=>x.balance),color:'#6652d5'},{name:'Aportes',values:result.points.map(x=>x.contributed),color:'#8b879d',dashed:true}],`Evolución en CLP durante ${$('months').value} meses: total ${money(result.balance)}, aportado ${money(result.contributed)}. Eje horizontal: meses.`,compactMoney);
+  }
+  function renderRisk() {
+    const key=$('risk-model').value,stake=+$('risk-stake').value,rounds=+$('risk-rounds').value,model=F.models[key];
+    const result=F.experiment(key,stake,rounds);
+    $('house-edge').textContent=count(result.edge*100)+'%';
+    $('expected-net').textContent=count(result.theory)+' fichas';$('observed-net').textContent=count(result.average)+' fichas';
+    $('model-description').textContent=`Probabilidad de acierto: ${count(model.p*100)}%. Pago total al acertar: ${count(model.payout)}× lo apostado (incluye la ficha inicial). Total apostado entre 300 sesiones: ${count(result.totalStaked)} fichas. ${key==='fair'?'Este control tiene resultado esperado cero: no elimina el riesgo de perder en una sesión.':''}`;
+    const theory=Array.from({length:rounds+1},(_,i)=>F.expected(model,stake,i));
+    chart('risk-chart',[{name:'Una sesión',values:result.sample,color:'#aaa6b7'},{name:'Promedio observado',values:result.mean,color:'#6652d5'},{name:'Resultado esperado',values:theory,color:'#dc765f',dashed:true}],`Resultado neto acumulado en fichas por ronda. Resultado esperado final ${count(result.theory)}; promedio observado ${count(result.average)}. Eje horizontal: rondas.`,compactMoney);
+    $('session-bar').innerHTML=`<span class="green" style="width:${result.winners/3}%"></span><span class="gray" style="width:${result.tied/3}%"></span><span class="coral-dot" style="width:${result.losers/3}%"></span>`;
+    $('session-summary').textContent=`De 300 sesiones: ${result.winners} terminaron con ganancia, ${result.tied} empatadas y ${result.losers} con pérdida. ${result.edge>0?'Las ganancias puntuales no cambian la desventaja matemática.':'El modelo justo puede producir ganancias y pérdidas, aunque su expectativa sea cero.'} Repetir el experimento genera otros resultados.`;
+  }
+  const missions={budget:{right:'compare',yes:'Comparar el costo completo permite decidir si ese gasto cabe en tus prioridades. Puedes conservarlo, ajustarlo o dejarlo; lo importante es decidir con información.',no:'El precio mensual puede esconder el costo acumulado. Multiplica por 12 y compáralo con tu meta antes de decidir.'},saving:{right:'liquidity',yes:'La meta tiene una fecha cercana. Revisa si podrás retirar el dinero a tiempo, los costos y si su valor puede caer.',no:'Una promesa de rendimiento no asegura disponibilidad ni evita pérdidas. Para una meta cercana, revisar el plazo y el riesgo es esencial.'},risk:{right:'same',yes:'Exacto: en rondas independientes, una racha no altera la probabilidad siguiente. Ganar no es una deuda que el azar tenga contigo.',no:'El azar no compensa una racha. En este modelo cada ronda conserva su probabilidad, independientemente de las anteriores.'}};
+  function renderProgress(){
+    const n=state.completed.length;$('progress').value=n;$('progress-label').textContent=n+' de 3 misiones';
+    document.querySelectorAll('[data-mission]').forEach(el=>{const key=el.dataset.mission;if(state.completed.includes(key)){el.parentElement.querySelector('.mission-feedback').textContent='Misión completada. '+missions[key].yes;el.querySelector(`[data-answer="${missions[key].right}"]`).classList.add('selected');}});
+  }
+  function route(){
+    const key=['dinero','futuro','riesgos'].includes(location.hash.slice(1))?location.hash.slice(1):'dinero';
+    document.querySelectorAll('.page').forEach(p=>p.hidden=p.id!=='page-'+key);
+    document.querySelectorAll('[data-route]').forEach(a=>{a.classList.toggle('active',a.dataset.route===key);if(a.dataset.route===key)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+    $('breadcrumb').textContent='APRENDE HACIENDO / '+({dinero:'MI DINERO',futuro:'MI FUTURO',riesgos:'SIN TRAMPAS'}[key]);
+  }
+  $('period').value=month;$('entry-date').value=today;
+  $('period').addEventListener('change',renderBudget);
+  $('needs').addEventListener('input',allocation);
+  $('wants').addEventListener('input',()=>{if(+$('needs').value + +$('wants').value>100)$('needs').value=100-+$('wants').value;allocation();});
+  $('entry-form').addEventListener('submit',e=>{
+    e.preventDefault();
+    const date=$('entry-date').value,amount=+$('entry-amount').value,note=$('entry-note').value.trim();
+    if(!note){$('entry-note').setCustomValidity('Agrega una descripción.');$('entry-note').reportValidity();return;}
+    if(state.entries.length>=5000){toast('Hay 5.000 movimientos. Respalda y elimina los que ya no necesitas.');return;}
+    state.entries.push({id:globalThis.crypto?.randomUUID?.()||Date.now()+'-'+Math.random(),type:$('entry-type').value,amount,category:$('entry-category').value,note,date});
+    $('period').value=date.slice(0,7);$('entry-amount').value='';$('entry-note').value='';renderBudget();save('Movimiento agregado.');
+  });
+  $('entry-note').addEventListener('input',()=> $('entry-note').setCustomValidity(''));
+  $('entries').addEventListener('click',e=>{const b=e.target.closest('[data-delete]');if(!b)return;state.entries=state.entries.filter(x=>x.id!==b.dataset.delete);renderBudget();save('Movimiento eliminado.');});
+  $('goal-form').addEventListener('submit',e=>{e.preventDefault();const name=$('goal-name').value.trim();if(!name){toast('Escribe el nombre de tu meta.');return;}state.goal={name,target:+$('goal-target').value,saved:+$('goal-saved').value};renderGoal();allocation();save('Meta actualizada.');});
+  $('saving-form').addEventListener('submit',e=>{e.preventDefault();try{renderProjection();toast('Escenario actualizado.');}catch{toast('Revisa los valores del escenario.');}});
+  $('risk-form').addEventListener('submit',e=>{e.preventDefault();try{renderRisk();toast('Experimento completo: 300 sesiones analizadas.');}catch{toast('Revisa los valores del experimento.');}});
+  document.querySelectorAll('[data-mission]').forEach(el=>el.addEventListener('click',e=>{const b=e.target.closest('[data-answer]');if(!b)return;const key=el.dataset.mission,right=b.dataset.answer===missions[key].right;el.querySelectorAll('button').forEach(x=>x.classList.toggle('selected',x===b));el.parentElement.querySelector('.mission-feedback').textContent=right?missions[key].yes:missions[key].no;if(right&&!state.completed.includes(key)){state.completed.push(key);renderProgress();save('Una nueva misión completada.');}}));
+  function refresh(){renderBudget();document.querySelectorAll('.mission-feedback').forEach(x=>x.textContent='');document.querySelectorAll('.choices button').forEach(x=>x.classList.remove('selected'));renderProgress();}
+  function replace(next,message){state=next;refresh();save(message);}
+  $('start-empty').addEventListener('click',()=>{if(confirm('¿Eliminar los datos de ejemplo y comenzar desde cero?'))replace(empty(),'Tu espacio está listo para comenzar.');});
+  $('open-data').addEventListener('click',()=>{$('data-feedback').textContent='';$('data-dialog').showModal();});
+  $('open-sources').addEventListener('click',()=> $('sources-dialog').showModal());
+  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>$(b.dataset.close).close()));
+  $('clear-data').addEventListener('click',()=>{if(confirm('¿Borrar movimientos, meta y progreso de este navegador? Descarga un respaldo si quieres conservarlos.')){replace(empty(),'Datos borrados.');feedbackNotes=[];saveNotes();renderNotes();$('data-feedback').textContent='Datos anteriores eliminados. Tu espacio quedó vacío.';}});
+  $('load-demo').addEventListener('click',()=>{if(confirm('¿Reemplazar movimientos, meta y progreso por el ejemplo?')){replace(demo(),'Ejemplo cargado.');$('period').value=month;renderBudget();$('data-feedback').textContent='Ahora estás usando datos ficticios de ejemplo.';}});
+  $('export-data').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='rumbo-respaldo-'+today+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('data-feedback').textContent='Respaldo preparado. Consérvalo en un lugar privado.';});
+  $('import-data').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>2e6)throw Error();const restored=F.validateBackup(JSON.parse(await file.text()));if(confirm('¿Reemplazar los datos de este navegador por el respaldo?')){replace(restored,'Respaldo restaurado.');const last=state.entries.map(x=>x.date).sort().at(-1);$('period').value=last?last.slice(0,7):month;renderBudget();$('data-feedback').textContent='Respaldo restaurado correctamente.';}}catch{$('data-feedback').textContent='El archivo no es un respaldo válido de Rumbo. Tus datos actuales se conservaron.';}finally{e.target.value='';}});
+  const FEEDBACK_KEY = 'rumbo.feedback.v1';
+  let feedbackNotes = [];
+  try {
+    const notes = JSON.parse(localStorage.getItem(FEEDBACK_KEY) || '[]');
+    if (Array.isArray(notes)) feedbackNotes = notes.slice(0,200).filter(n => n && ['section','kind','task','result','expect','date'].every(k => typeof n[k] === 'string' && n[k].length <= 700)).map(n => ({section:n.section,kind:n.kind,task:n.task,result:n.result,expect:n.expect,date:n.date}));
+  } catch { /* Las notas no bloquean la app si el navegador impide guardarlas. */ }
+  function saveNotes() {
+    try { localStorage.setItem(FEEDBACK_KEY, JSON.stringify(feedbackNotes)); return true; }
+    catch { return false; }
+  }
+  function renderNotes() {
+    $('feedback-list').innerHTML = feedbackNotes.map((n,i) => `<article><strong>${i+1}. ${escape(n.kind)} · ${escape(n.section)}</strong><p><b>Intentaba:</b> ${escape(n.task)}</p><p><b>Observé:</b> ${escape(n.result)}</p>${n.expect?`<p><b>Propongo:</b> ${escape(n.expect)}</p>`:''}<button class="text-button" data-remove-note="${i}">Eliminar esta nota</button></article>`).join('');
+    $('download-feedback').disabled = feedbackNotes.length === 0;
+    $('feedback-status').textContent = feedbackNotes.length ? `${feedbackNotes.length} nota(s) listas para descargar. No se envían automáticamente.` : 'Todavía no has guardado notas.';
+  }
+  $('open-feedback').addEventListener('click', () => {
+    const current = location.hash.slice(1);
+    $('feedback-section').value = ['dinero','futuro','riesgos'].includes(current) ? current : 'dinero';
+    renderNotes(); $('feedback-dialog').showModal();
+  });
+  $('feedback-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const task=$('feedback-task').value.trim(), result=$('feedback-result').value.trim();
+    if (!task || !result) { $('feedback-status').textContent='Describe qué intentabas hacer y qué ocurrió.'; return; }
+    if (feedbackNotes.length>=200) { $('feedback-status').textContent='Descarga tus notas y elimina alguna antes de agregar más.'; return; }
+    feedbackNotes.push({date:localDate(),section:$('feedback-section').selectedOptions[0].textContent,kind:$('feedback-kind').value,task,result,expect:$('feedback-expect').value.trim()});
+    const stored=saveNotes(); renderNotes();
+    $('feedback-task').value=''; $('feedback-result').value=''; $('feedback-expect').value='';
+    if (!stored) $('feedback-status').textContent='La nota está en esta sesión, pero no se pudo guardar en el navegador. Descárgala antes de salir.';
+  });
+  $('feedback-list').addEventListener('click', e => {
+    const b=e.target.closest('[data-remove-note]'); if (!b) return;
+    feedbackNotes.splice(+b.dataset.removeNote,1); const stored=saveNotes(); renderNotes();
+    if(!stored) $('feedback-status').textContent='No se pudo actualizar el guardado. Descarga tus notas antes de salir.';
+  });
+  $('download-feedback').addEventListener('click', () => {
+    const header='RUMBO · NOTAS DE LA PRUEBA EN AULA\nVersión 1.1 · 19 de octubre de 2026\nSin identificación del estudiante\n\n';
+    const body=feedbackNotes.map((n,i)=>`${i+1}. ${n.kind} · ${n.section} (${n.date})\nIntentaba: ${n.task}\nObservé: ${n.result}\nPropongo: ${n.expect || '(sin propuesta)'}\n`).join('\n');
+    const url=URL.createObjectURL(new Blob([header+body],{type:'text/plain;charset=utf-8'}));
+    const a=document.createElement('a');a.href=url;a.download='Rumbo_notas_'+localDate()+'.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    $('feedback-status').textContent='Archivo preparado. Compártelo con tu docente por el medio acordado.';
+  });
+  window.addEventListener('hashchange',()=>{route();window.scrollTo({top:0,behavior:'instant'});$('main').focus({preventScroll:true});});
+  renderBudget();renderProjection();renderRisk();renderProgress();route();persist();
+  if(startupMessage)toast(startupMessage);
+})();
+
+</script>
+</body>
+</html>
